@@ -1,13 +1,13 @@
-package com.example.teste.email.email;
+package com.example.email.demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class EmailApplication {
+public class DemoApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(EmailApplication.class, args);
+		SpringApplication.run(DemoApplication.class, args);
 	}
 
 }
