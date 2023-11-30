@@ -22,6 +22,7 @@ public class EmailModel implements Serializable {
     private String emailFrom;
     private String emailTo;
     private String subject;
+    //Todos são colunas, porem esse esta sendo anotado de forma expicita para usar a definição de text
     @Column(columnDefinition = "TEXT")
     private String text;
     private LocalDateTime sendDate;
