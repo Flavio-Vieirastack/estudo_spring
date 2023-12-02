@@ -1,3 +1,5 @@
+# Parei em 12:06 da aula 3
+
 # Tutorial spring
 # Comandos
 * ./mvnw clean (Limpa os builds anteriores)
@@ -13,14 +15,21 @@
 * Efective POM: Mostra o pom final do projeto
 
 # Anotações
+* @Bean (São objetos que devem ser gerenciados pelo spring, ou seja sempre que uso a anotação @Bean eu estou dizendo que aquele objeto deve ser gerenciado pelo spring. Também existe a anitação @Component que transforma a classe em questão em um bean)
 * @Controller (Cria um endpoint)
 * @GetMapping (Usa sempre em cima de uma função, ela serve para dizer de qual tipo de requisição estamos falando, ela pode receber uma string que é o endpoint a ser acessado)
 * @ResponseBody (Use para dizer que a função vai retornar uma corpo de uma resposta HTTP)
+* @Component (Transforma a classe em um beam)
+* @Configuration (Serve para definir outros beans, exemplo:)
+  ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/df431a4a-b2b4-48cd-aa1a-408cf4ffa824)
+  No exemplo a cima eu estou criando uma classe de configuração e configurando um objeto que não é um Beam para ser um Beam do Spring
+* @AutoWired (Serve para fazer injeções e também para dizer ao Spring qual construtor usar na hora da instância, exemplo:)
+  ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/dce6b2bf-258d-4260-aaf2-151ec938e803)
+* @AutoWired(required = false) (Serve para fazer injeções opcionais)
+
 
 # Lembrete
-As pastas dos arquivos da api devem estar dentro da ultima pasta, a que contem o arquivo de start da aplicação
-
-# Parei em 29 e 17 da segunda aula
+* As pastas dos arquivos da api devem estar dentro da ultima pasta, a que contem o arquivo de start da aplicação
 
 # Tipos de mensageria
 
@@ -45,3 +54,63 @@ Os eventos são produzidos por serviços quando algo significativo acontece, com
 O "event transfer pattern" facilita a integração e a comunicação entre serviços em uma arquitetura de microserviços, permitindo uma abordagem mais flexível e resiliente. Ele ajuda na escalabilidade, uma vez que os serviços podem ser adicionados ou removidos sem interromper a troca de eventos entre eles.
 Além disso, esse padrão promove a separação de preocupações entre os serviços, permitindo que cada um foque em sua funcionalidade específica sem precisar conhecer os detalhes internos dos outros serviços. Isso leva a uma arquitetura mais modular e adaptável.
 Em resumo, o "event transfer pattern" nos microserviços refere-se à troca de eventos entre serviços de maneira assíncrona e desacoplada, facilitando a comunicação e a reatividade dentro de uma arquitetura orientada a eventos.
+
+# Problemas e soluções
+
+## Ambiguidade de Beans
+
+Esse problema acontece quando você tem mais de uma classe implementando uma interface e você injeta essa interface em outra classe Exemplo:
+* Você tem a interface Notificador
+* Você tem a classe NotificaçãoPorEmail que implementa essa interface
+* Você tem a classe NotificaçãoPorSMS que implementa essa interface
+* Você tem uma classe que injeta a interface Notificador, nessa hora irá acontecer um erro pois o Spring não sabe qual das implementações ele deve injetar
+
+Resolução 1:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/e547a62c-4218-4833-a97b-137fcf7659b6)
+
+Dessa forma eu estou dizendo que essa classe e a prioridade para ser injetada
+
+Resolução 2:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/518473cb-8c43-4f34-a7a7-226d5a633180)
+
+O @Qualifier é um identificador com ele eu posso escolher qual objeto será injetado. Com isso feito o erro ainda vai continuar e para resolver basta ir na classe que está injetando o objeto e fazer da seguinte forma
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/9530d085-e842-46e7-8bc6-ce7121445927)
+
+Resolução 3:
+
+Criando uma anotação personalizada:
+
+* Primeiro passo: Criar uma anotação
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/4500dfcf-801e-4947-972f-0c968840952b)
+
+* No meu caso eu vou criar um enum do nível de urgência dessa injeção
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/6df83bde-e766-4175-a0cf-6466a4aa7bfd)
+
+* Vou adicionar na minha classe de anotation
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/89139e7c-27fb-48df-a585-b761e2756ce8)
+
+_Esse value significa que quando eu chamar a minha anotação eu não preciso passar o value = NivelUrgencia.URGENT ficando assim:_
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/6296a06a-0310-452e-8931-40e3bcd56f13)
+
+O meu enum vai ter dois valores
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/d4abbe6d-d3cb-43f2-95f4-7ced50b4a28e)
+
+Depois disso voltamos na classe da anotação e adiciona a anotação @Qualifier (Isso vai servir para dizer que essa anotação e do tipo qualificadora)
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/8d8b9c9d-d9f0-4373-888a-cf8d9266a560)
+
+E adicionados a anotação @Retention
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/d6117dc3-8e60-49f8-a770-fe7055715045)
+
+_Essa anotação serve para dizer ao spring quanto tempo essa anotação deverá ficar ativa no sistema_
+
+Feito isso a anotação está pronta
