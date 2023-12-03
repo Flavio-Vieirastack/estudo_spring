@@ -1,5 +1,4 @@
-# Parei em 12:06 da aula 3
-
+# Parei em 45:50 da aula 3
 # Tutorial spring
 # Comandos
 * ./mvnw clean (Limpa os builds anteriores)
@@ -114,3 +113,85 @@ E adicionados a anotação @Retention
 _Essa anotação serve para dizer ao spring quanto tempo essa anotação deverá ficar ativa no sistema_
 
 Feito isso a anotação está pronta
+
+# Spring profiles
+São como as flavors da aplicação, você pode adicionar diferentes comportamentos dependendo do ambiente
+
+Imagine o cenário em que você precisa enviar um email para um serviço, em produção você realmente envia o email, más em desenvolvimento você apenas envia um email fake. Vamos criar a classe de envio de email fake
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/46fab3ba-b069-413c-bced-89c4ad9b5a3b)
+
+Feito isso na nossa classe que envia o email real basta anotar com o @Profile e passar um nome para ele assim:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/d1c5df69-49d2-4f16-941b-b7ecc9402269)
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/682eb135-cc48-4697-92fd-daf6454f5973)
+
+Feito isso nos devemos dizer ao Spring qual profile usar, pode ser das seguinte formas:
+
+* Forma1:
+Por application.properties
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/299ea99a-dfa0-49ff-91b7-f91ca7220b39)
+
+Por linha de comando use o seguinte comando:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/82303c5e-d9ac-4bc7-8902-6c1931a6d93d)
+
+# Cliclo de vida dos Beans
+* Inicialização do Bean: Essa fase acontece assim que o Bean é instânciado (Essa função é chamada depois do construtor da classe)
+* Fase de uso do Bean
+* Fase de destruição do Bean
+Para acessar as fases do Bean você poder fazer das seguintes formas:
+* Criando funções para o cliclo de vida assim:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/401919bd-036f-47b5-8abc-198d384b2154)
+
+Feito isso basta adicionar as seguintes anotações
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/379b879d-71b8-4b8d-956d-7a85cfa8b741)
+
+* Criando a assinatura das funções dentro do @Bean (30:47 da aula 3)
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/ac6f4680-045a-484a-a898-d6927b4dd105)
+
+# Spring event handler
+O event handler é um observer (Design pattern).
+Imagine uma situação em que você faz o envio de um email e você quer notificar o cliente que o email foi enviado, você pode fazer isso com o observer, assim:
+* Primeiro passo: Criar uma classe que represente esse evento:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/3a3f810a-718f-431e-99bd-389f51572066)
+
+* Segundo passo: Disparar o evento
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/76628f62-825b-4b02-9ae9-d1e939b75451)
+
+Na classe que irá disparar o evento basta injetar o ApplicationEventPublisher e fazer o disparo assim
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/0e2c4957-58d0-4956-a1c9-49c1073e7542)
+
+Você ainda pode passar atributos na classe de evento, como por exemplo qual cliente está sendo ativado.
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/f22ce8e9-1e2d-4058-916e-8d9f58dadae2)
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/70061f03-6046-4a99-bd09-55392559b7ea)
+
+* Terceiro passo: Implementar o listner.
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/26d2c5a3-f6da-4b23-a4eb-89aeebb9156c)
+
+Vamos fazer uma função que receba a classe de evento como parâmetro
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/63497075-a260-4328-81b9-24bab394deff)
+
+Vamos anotar a função com o @EventListner
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/bf2bf40b-4971-492a-98ad-48d00d662499)
+
+E definir a classe como um componente Spring
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/ee542e4b-6dd3-4c82-bb16-d5476380e258)
+
+Feito isso a nossa classe ja escuta o evento que ela recebe como parâmetro e podemos fazer algo ao receber esse evento, como por exemplo:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/87445c60-55c2-4c8d-a862-7199a8e9ebf1)
+
