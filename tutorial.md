@@ -1,10 +1,14 @@
-# Parei em 45:50 da aula 3
+# Parei em 1 hora do video
 # Tutorial spring
 # Comandos
 * ./mvnw clean (Limpa os builds anteriores)
 * ./mvnw dependency:tree (Mostra lista de dependencias)
 * ./mvnw dependency:resolve (Mostra lista de dependencias resolvidas)
 * ./mvnw help:effective-pom (Gera o pom efeitivo do projeto)
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/ae70dd7b-ecf4-4ac5-b104-05f03bdf1295)
+
+Esse comando a cima serve para especificar uma porta padrão quando fizer o build do projeto para .jar
   
 # O que é cada coisa
 * Maven gerencia as dependencias do projeto e build
@@ -194,4 +198,26 @@ E definir a classe como um componente Spring
 Feito isso a nossa classe ja escuta o evento que ela recebe como parâmetro e podemos fazer algo ao receber esse evento, como por exemplo:
 
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/87445c60-55c2-4c8d-a862-7199a8e9ebf1)
+
+# Fazendo configurações
+
+A forma mais correta de fazer configurações no seu projeto como chaves de apis e outros dados sensíveis e adicionado elas no arquivo application.properties
+
+Algumas das principais propriedades desse arquivo podem ser encontradas aqui: [Link](https://docs.spring.io/spring-boot/docs/1.1.6.RELEASE/reference/html/common-application-properties.html)
+
+# Criando propriedades customizadas
+
+* Primeiro passo: Criar as propriedades no application.properties diretamente dessa forma:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/8228f97a-0298-4732-a48e-a9483979a602)
+
+* Segundo passo: Acessar os valores na aplicação
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/8b32cace-6611-4132-a45f-b1df557177da)
+
+OBS: O ${} È OBRIGATÓRIO
+
+# Criando classe para configurações personalizadas
+
+* 1: Criando a classe
 
