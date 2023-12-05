@@ -7,7 +7,7 @@
   
 - [Comandos](#comandos)
 - [Definições de nomenclaturas](#definicoes)
-- [Anotações](#anotacoes)
+- [Anotações principais](#anotacoes)
 - [Lembrete](#lembrete)
 - [Tipos de mensageria](#mensageria)
 - [Problemas e soluções](#problemas)
@@ -41,7 +41,7 @@ Esse comando a cima serve para especificar uma porta padrão quando fizer o buil
 
 [Inicio](#init)
 
-# Anotações
+# Anotações principais [Lista mais completa](https://github.com/devmorfeu/spring-annotations)
 * @Bean (Essa anotação deve ser feita a cima de uma função e indica que ela retorna um Bean)
 * @Controller (Cria um endpoint)
 * @GetMapping (Usa sempre em cima de uma função, ela serve para dizer de qual tipo de requisição estamos falando, ela pode receber uma string que é o endpoint a ser acessado)
