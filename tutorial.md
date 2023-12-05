@@ -1,4 +1,4 @@
-# Parei em 1 hora do video
+# Parei em 1 hora e 7
 # Tutorial spring
 # Comandos
 * ./mvnw clean (Limpa os builds anteriores)
@@ -219,5 +219,24 @@ OBS: O ${} È OBRIGATÓRIO
 
 # Criando classe para configurações personalizadas
 
-* 1: Criando a classe
+* Para fazer isso é muito simples basta criar a classe:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/f919d8bb-64c0-4ad0-81cb-12a516d3ad72)
+
+* Adicionar as seguintes anotações:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/447e614f-f43b-4fa8-8cef-7ef88bf0b87f)
+
+OBS: A STRING DENTRO DA ANOTAÇÃO @ConfigurationProperties SE REFERE AO PREFIXO DADO DENTRO DO ARQUIVO aplication.properties
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/490e0641-f3b7-4476-9f6b-b8c18e806388)
+
+OBS2: O NOME DAS VARIÁVEIS DEVEM SER O MESMO NOME DAS VARIÁVEIS DENTRO DO aplication.properties COMO DA PARA VER NAS IMAGENS A CIMA
+OBS: PODE SER SOLICITADO UMA NOVA DEPENDÊNCIA NA HORA DE FAZER ISSO
+
+* Feito isso sempre que quiser usar as configurações basta injetar essa classe assim:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/12d09484-21e1-4015-aaaa-a3de3e9c5ae9)
+
+
 
