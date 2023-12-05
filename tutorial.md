@@ -8,6 +8,9 @@
 - [Tipos de mensageria](#mensageria)
 - [Problemas e soluções](#problemas)
 - [Spring profiles](#profiles)
+- [Cliclo de vida dos Beans](#beans-life)
+- [Spring event handler](#event-handler)
+- [Classe de configurações do projeto](#poject-config)
 
 <div id='comandos'/>
 
@@ -163,6 +166,8 @@ Por linha de comando use o seguinte comando:
 
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/82303c5e-d9ac-4bc7-8902-6c1931a6d93d)
 
+<div id='beans-life'/>
+
 # Cliclo de vida dos Beans
 * Inicialização do Bean: Essa fase acontece assim que o Bean é instânciado (Essa função é chamada depois do construtor da classe)
 * Fase de uso do Bean
@@ -179,6 +184,8 @@ Feito isso basta adicionar as seguintes anotações
 * Criando a assinatura das funções dentro do @Bean (30:47 da aula 3)
 
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/ac6f4680-045a-484a-a898-d6927b4dd105)
+
+<div id='event-handler'/>
 
 # Spring event handler
 O event handler é um observer (Design pattern).
@@ -220,6 +227,8 @@ E definir a classe como um componente Spring
 Feito isso a nossa classe ja escuta o evento que ela recebe como parâmetro e podemos fazer algo ao receber esse evento, como por exemplo:
 
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/87445c60-55c2-4c8d-a862-7199a8e9ebf1)
+
+<div id='poject-config'/>
 
 # Fazendo configurações
 
