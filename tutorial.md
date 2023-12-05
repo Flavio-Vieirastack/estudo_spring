@@ -39,7 +39,7 @@ Esse comando a cima serve para especificar uma porta padrão quando fizer o buil
 
 <div id='anotacoes'/>
 
-- [Inicio](#init)
+[Inicio](#init)
 
 # Anotações
 * @Bean (São objetos que devem ser gerenciados pelo spring, ou seja sempre que uso a anotação @Bean eu estou dizendo que aquele objeto deve ser gerenciado pelo spring. Também existe a anitação @Component que transforma a classe em questão em um bean)
@@ -56,14 +56,14 @@ Esse comando a cima serve para especificar uma porta padrão quando fizer o buil
 
 <div id='lembrete'/>
 
-- [Inicio](#init)
+[Inicio](#init)
 
 # Lembrete
 * As pastas dos arquivos da api devem estar dentro da ultima pasta, a que contem o arquivo de start da aplicação
 
 <div id='mensageria'/>
 
-- [Inicio](#init)
+[Inicio](#init)
 
 # Tipos de mensageria
 
@@ -91,7 +91,7 @@ Em resumo, o "event transfer pattern" nos microserviços refere-se à troca de e
 
 <div id='problemas'/>
 
-- [Inicio](#init)
+[Inicio](#init)
 
 # Problemas e soluções
 
@@ -155,7 +155,7 @@ Feito isso a anotação está pronta
 
 <div id='profiles'/>
 
-- [Inicio](#init)
+[Inicio](#init)
 
 # Spring profiles
 São como as flavors da aplicação, você pode adicionar diferentes comportamentos dependendo do ambiente
@@ -182,7 +182,7 @@ Por linha de comando use o seguinte comando:
 
 <div id='beans-life'/>
 
-- [Inicio](#init)
+[Inicio](#init)
 
 # Cliclo de vida dos Beans
 * Inicialização do Bean: Essa fase acontece assim que o Bean é instânciado (Essa função é chamada depois do construtor da classe)
@@ -203,7 +203,7 @@ Feito isso basta adicionar as seguintes anotações
 
 <div id='event-handler'/>
 
-- [Inicio](#init)
+[Inicio](#init)
 
 # Spring event handler
 O event handler é um observer (Design pattern).
@@ -248,7 +248,7 @@ Feito isso a nossa classe ja escuta o evento que ela recebe como parâmetro e po
 
 <div id='poject-config'/>
 
-- [Inicio](#init)
+[Inicio](#init)
 
 # Fazendo configurações
 
