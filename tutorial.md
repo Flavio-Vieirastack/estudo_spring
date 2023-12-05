@@ -17,8 +17,6 @@
 
 <div id='comandos'/>
 
-- [Inicio](#init)
-
 # Comandos
 * ./mvnw clean (Limpa os builds anteriores)
 * ./mvnw dependency:tree (Mostra lista de dependencias)
@@ -30,8 +28,6 @@
 Esse comando a cima serve para especificar uma porta padrão quando fizer o build do projeto para .jar
 
 <div id='definicoes'/>
-
-- [Inicio](#init)
 
 # Definições de nomenclaturas
 * Maven gerencia as dependencias do projeto e build
