@@ -1,4 +1,4 @@
-# Parei em 1 hora e 7
+# Parei no inicio da aula 4
 
 <div id='init'/>
   
@@ -15,6 +15,7 @@
 - [Cliclo de vida dos Beans](#beans-life)
 - [Spring event handler](#event-handler)
 - [Classe de configurações do projeto](#poject-config)
+- [JPA e Hibernate](#jpa)
 
 <div id='comandos'/>
 
@@ -180,6 +181,22 @@ Por linha de comando use o seguinte comando:
 
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/82303c5e-d9ac-4bc7-8902-6c1931a6d93d)
 
+# Chaveando configurações dependendo do Spring profile
+
+## Criando um aplication.properties para cada profile
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/18eb7eef-5739-47cc-bbcb-50858c9d7dcf)
+
+Com isso em cada arquivo você pode adicionar as configurações basicas de cada ambiente
+
+Para ativar os profiles você pode fazer pelo aplication.properties
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/61a4ab1a-8307-4043-8baa-6ad705cc0357)
+
+Ou por linha de comando (Gerando build)
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/33782ec1-7ceb-4a30-915e-2c1c9d67fa34)
+
 <div id='beans-life'/>
 
 [Inicio](#init)
@@ -288,6 +305,32 @@ OBS: PODE SER SOLICITADO UMA NOVA DEPENDÊNCIA NA HORA DE FAZER ISSO
 * Feito isso sempre que quiser usar as configurações basta injetar essa classe assim:
 
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/12d09484-21e1-4015-aaaa-a3de3e9c5ae9)
+
+<div id='jpa'/>
+
+# JPA e Hibernate
+
+JPA: Especificação usanda para persistir dados em um banco. Usa uma linguagem SQL chamada JPQL que é nada mais que um SQL mais simples usando a JPA.
+HIBERNATE: É um produto da JPA ou seja uma implemetação da JPA.
+
+Exemplo de um mapeamento usando JPA:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/29707d25-13d4-4813-b127-f980d1f40eff)
+
+## Como usar?
+
+- 1 Adicionar a dependência da JPA
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/6824edf0-a81b-4119-940f-e7855c8300f0)
+
+- 2 Adicionar Driver do banco
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/26996dcf-1d1a-4d3f-891a-4787666dd4e9)
+
+- 3 Configurar a conexão com o banco
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/4c4b528a-bf6b-4cf0-8e89-b9e47a4fd152)
+
 
 
 
