@@ -1,6 +1,9 @@
 # Parei em 1 hora e 7
 # Tutorial spring
 # Indice
+
+<div id='init'/>
+  
 - [Comandos](#comandos)
 - [Definições de nomenclaturas](#definicoes)
 - [Anotações](#anotacoes)
@@ -14,6 +17,8 @@
 
 <div id='comandos'/>
 
+- [Inicio](#init)
+
 # Comandos
 * ./mvnw clean (Limpa os builds anteriores)
 * ./mvnw dependency:tree (Mostra lista de dependencias)
@@ -26,6 +31,8 @@ Esse comando a cima serve para especificar uma porta padrão quando fizer o buil
 
 <div id='definicoes'/>
 
+- [Inicio](#init)
+
 # Definições de nomenclaturas
 * Maven gerencia as dependencias do projeto e build
 * POM (Project Object Model) é onde ficam as configurações do maven e do projeto
@@ -34,6 +41,8 @@ Esse comando a cima serve para especificar uma porta padrão quando fizer o buil
 * Efective POM: Mostra o pom final do projeto
 
 <div id='anotacoes'/>
+
+- [Inicio](#init)
 
 # Anotações
 * @Bean (São objetos que devem ser gerenciados pelo spring, ou seja sempre que uso a anotação @Bean eu estou dizendo que aquele objeto deve ser gerenciado pelo spring. Também existe a anitação @Component que transforma a classe em questão em um bean)
@@ -50,10 +59,14 @@ Esse comando a cima serve para especificar uma porta padrão quando fizer o buil
 
 <div id='lembrete'/>
 
+- [Inicio](#init)
+
 # Lembrete
 * As pastas dos arquivos da api devem estar dentro da ultima pasta, a que contem o arquivo de start da aplicação
 
 <div id='mensageria'/>
+
+- [Inicio](#init)
 
 # Tipos de mensageria
 
@@ -80,6 +93,8 @@ Além disso, esse padrão promove a separação de preocupações entre os servi
 Em resumo, o "event transfer pattern" nos microserviços refere-se à troca de eventos entre serviços de maneira assíncrona e desacoplada, facilitando a comunicação e a reatividade dentro de uma arquitetura orientada a eventos.
 
 <div id='problemas'/>
+
+- [Inicio](#init)
 
 # Problemas e soluções
 
@@ -143,6 +158,8 @@ Feito isso a anotação está pronta
 
 <div id='profiles'/>
 
+- [Inicio](#init)
+
 # Spring profiles
 São como as flavors da aplicação, você pode adicionar diferentes comportamentos dependendo do ambiente
 
@@ -168,6 +185,8 @@ Por linha de comando use o seguinte comando:
 
 <div id='beans-life'/>
 
+- [Inicio](#init)
+
 # Cliclo de vida dos Beans
 * Inicialização do Bean: Essa fase acontece assim que o Bean é instânciado (Essa função é chamada depois do construtor da classe)
 * Fase de uso do Bean
@@ -186,6 +205,8 @@ Feito isso basta adicionar as seguintes anotações
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/ac6f4680-045a-484a-a898-d6927b4dd105)
 
 <div id='event-handler'/>
+
+- [Inicio](#init)
 
 # Spring event handler
 O event handler é um observer (Design pattern).
@@ -229,6 +250,8 @@ Feito isso a nossa classe ja escuta o evento que ela recebe como parâmetro e po
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/87445c60-55c2-4c8d-a862-7199a8e9ebf1)
 
 <div id='poject-config'/>
+
+- [Inicio](#init)
 
 # Fazendo configurações
 
