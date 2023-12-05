@@ -8,7 +8,7 @@
 - [Comandos](#comandos)
 - [Definições de nomenclaturas](#definicoes)
 - [Anotações principais](#anotacoes)
-- [Lembrete](#lembrete)
+- [Lembretes](#lembrete)
 - [Tipos de mensageria](#mensageria)
 - [Problemas e soluções](#problemas)
 - [Spring profiles](#profiles)
@@ -58,7 +58,7 @@ Esse comando a cima serve para especificar uma porta padrão quando fizer o buil
 
 [Inicio](#init)
 
-# Lembrete
+# Lembretes
 * As pastas dos arquivos da api devem estar dentro da ultima pasta, a que contem o arquivo de start da aplicação
 
 <div id='mensageria'/>
