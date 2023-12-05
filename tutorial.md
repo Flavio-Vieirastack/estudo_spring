@@ -1,5 +1,16 @@
 # Parei em 1 hora e 7
 # Tutorial spring
+# Indice
+- [Comandos](#comandos)
+- [Definições de nomenclaturas](#definicoes)
+- [Anotações](#anotacoes)
+- [Lembrete](#lembrete)
+- [Tipos de mensageria](#mensageria)
+- [Problemas e soluções](#problemas)
+- [Spring profiles](#profiles)
+
+<div id='comandos'/>
+
 # Comandos
 * ./mvnw clean (Limpa os builds anteriores)
 * ./mvnw dependency:tree (Mostra lista de dependencias)
@@ -9,13 +20,17 @@
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/ae70dd7b-ecf4-4ac5-b104-05f03bdf1295)
 
 Esse comando a cima serve para especificar uma porta padrão quando fizer o build do projeto para .jar
-  
-# O que é cada coisa
+
+<div id='definicoes'/>
+
+# Definições de nomenclaturas
 * Maven gerencia as dependencias do projeto e build
 * POM (Project Object Model) é onde ficam as configurações do maven e do projeto
 * Plugins podem ser adicionados nesse espaço no pom.xml
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/5b602f94-10cd-44ee-89ee-81bf4981267b)
 * Efective POM: Mostra o pom final do projeto
+
+<div id='anotacoes'/>
 
 # Anotações
 * @Bean (São objetos que devem ser gerenciados pelo spring, ou seja sempre que uso a anotação @Bean eu estou dizendo que aquele objeto deve ser gerenciado pelo spring. Também existe a anitação @Component que transforma a classe em questão em um bean)
@@ -30,9 +45,12 @@ Esse comando a cima serve para especificar uma porta padrão quando fizer o buil
   ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/dce6b2bf-258d-4260-aaf2-151ec938e803)
 * @AutoWired(required = false) (Serve para fazer injeções opcionais)
 
+<div id='lembrete'/>
 
 # Lembrete
 * As pastas dos arquivos da api devem estar dentro da ultima pasta, a que contem o arquivo de start da aplicação
+
+<div id='mensageria'/>
 
 # Tipos de mensageria
 
@@ -57,6 +75,8 @@ Os eventos são produzidos por serviços quando algo significativo acontece, com
 O "event transfer pattern" facilita a integração e a comunicação entre serviços em uma arquitetura de microserviços, permitindo uma abordagem mais flexível e resiliente. Ele ajuda na escalabilidade, uma vez que os serviços podem ser adicionados ou removidos sem interromper a troca de eventos entre eles.
 Além disso, esse padrão promove a separação de preocupações entre os serviços, permitindo que cada um foque em sua funcionalidade específica sem precisar conhecer os detalhes internos dos outros serviços. Isso leva a uma arquitetura mais modular e adaptável.
 Em resumo, o "event transfer pattern" nos microserviços refere-se à troca de eventos entre serviços de maneira assíncrona e desacoplada, facilitando a comunicação e a reatividade dentro de uma arquitetura orientada a eventos.
+
+<div id='problemas'/>
 
 # Problemas e soluções
 
@@ -117,6 +137,8 @@ E adicionados a anotação @Retention
 _Essa anotação serve para dizer ao spring quanto tempo essa anotação deverá ficar ativa no sistema_
 
 Feito isso a anotação está pronta
+
+<div id='profiles'/>
 
 # Spring profiles
 São como as flavors da aplicação, você pode adicionar diferentes comportamentos dependendo do ambiente
