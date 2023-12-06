@@ -1,4 +1,4 @@
-# Parei no inicio da aula 4
+# Parei na aula 4 8 minutos e 10
 
 <div id='init'/>
   
@@ -16,6 +16,7 @@
 - [Spring event handler](#event-handler)
 - [Classe de configurações do projeto](#poject-config)
 - [JPA e Hibernate](#jpa)
+- [Mapeamento objeto relacional](#mapping)
 
 <div id='comandos'/>
 
@@ -331,6 +332,21 @@ Exemplo de um mapeamento usando JPA:
 
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/4c4b528a-bf6b-4cf0-8e89-b9e47a4fd152)
 
+<div id='mapping'/>
 
+# Criando mapeamento objeto relacional
 
+Normalmente as classes relacionadas ao banco são as models ou entidade, então vamos criar um model com a anotação @Entity.
 
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/832bb67c-bbed-4ee3-b1e4-7605b9853f6e)
+
+Você ainda pode mudar o nome da tabela assim:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/3dc5b150-e83a-47e4-8ee8-d56b11e8d78d)
+
+Agora vamos popular com algumas variáveis.
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/4ef17f38-3ae5-40ee-9ce4-1a42e356bf75)
+
+É obrigatorio ter um id do tipo long anotado com a anotação @Id, ou em caso de microserviços esse id deve ser do tipo UUID também com o @Id
+A anotação @Column é opcional use somente se quiser mudar o nome da coluna em questão como é o nosso caso
