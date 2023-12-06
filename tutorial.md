@@ -1,4 +1,4 @@
-# Parei na aula 4 8 minutos e 10
+# Parei na aula 4 11:30
 
 <div id='init'/>
   
@@ -350,3 +350,5 @@ Agora vamos popular com algumas variáveis.
 
 É obrigatorio ter um id do tipo long anotado com a anotação @Id, ou em caso de microserviços esse id deve ser do tipo UUID também com o @Id
 A anotação @Column é opcional use somente se quiser mudar o nome da coluna em questão como é o nosso caso
+Feito isso basta usar o @Data do lombok para gerar os getters setters e afins
+
