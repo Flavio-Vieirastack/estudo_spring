@@ -17,6 +17,10 @@
 - [Classe de configurações do projeto](#poject-config)
 - [JPA e Hibernate](#jpa)
 - [Mapeamento objeto relacional](#mapping)
+- [Adicionado dados mock com sql](#dados-mock)
+- [Dropar as colunas assim que a aplicação subir](#drop)
+- [DDD](#ddd)
+- [Repository](#repository)
 
 <div id='comandos'/>
 
@@ -62,6 +66,10 @@ Esse comando a cima serve para especificar uma porta padrão quando fizer o buil
 
 # Lembretes
 * As pastas dos arquivos da api devem estar dentro da ultima pasta, a que contem o arquivo de start da aplicação
+* A forma certa de usar o equals e hashcode é apenas para o id nas entidades, com o lombook fica assim
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/08647f17-fa13-42cf-acde-9ee6af84ff44)
+
 
 <div id='mensageria'/>
 
@@ -352,3 +360,40 @@ Agora vamos popular com algumas variáveis.
 A anotação @Column é opcional use somente se quiser mudar o nome da coluna em questão como é o nosso caso
 Feito isso basta usar o @Data do lombok para gerar os getters setters e afins
 
+<div id='dados-mock'/>
+# Para adicionar dados mockados em sql assim que a aplicaão subir basta adicionar esse arquivo em resourses
+  
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/ca292ca9-b8a1-44d1-9e1b-24769f0ee1d9)
+
+Feito isso basta adicionar os codigos sql
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/ff0dcef8-565b-4904-b6ef-8c3884b9e84d)
+
+Com isso feito basta rodar o projeto e o spring irá fazer toda a mágica sozinho
+
+<div id='drop'/>
+
+Basta adicionar no application.properties o seguinte comando
+
+```spring.jpa.properties.hibernate.ddl-auto=update```
+
+ddl-auto=update - gera alterações , mas não descarta colunas não mapeadas. Por exemplo, você pode ter uma tabela com 10 colunas e mapeamento apenas para 3 delas; nesse caso, o modo automático pode descartá-las, mas para hibernate/jpa mapeamento completo de entidade de tabela não é obrigatório. Aqui está o ticket jira Alterar e eliminar colunas com hbm2ddl.auto=update criado em novembro de 2011 e agora o status é 'não corrigido'.
+
+Se você atualiza o banco de dados com frequência (seu modelo de domínio é alterado), você pode usar ferramentas ddl/dml como liquibase , flywaydb . Você descreve as alterações do banco de dados no arquivo xml e executa a ferramenta, todas as alterações serão aplicadas automaticamente (com controle automático do que já foi modificado antes e do que deve ser modificado agora).
+
+Apenas recomendação: é melhor usar ferramentas ddl se você não quiser adivinhar por que algo caiu na produção. hibernate.ddl-auto usado principalmente para desenvolvimento, não para produção. Na produção você pode usar nenhum ou validar - pois são seguros.
+
+<div id='ddd'/>
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/5182eb8a-5093-4be4-90be-cc2c6acd7e50)
+
+* O AgregateRoot é a Entidade principal dessa tabela sendo as outras filha dessa
+* Cada pasta no desenho corresponde a um agregado ou seja um conjunto de tabelas
+* Se uma tabela em outro agregado se comunicar com a outra essa deve apontar para o AgregateRoot do outro agregado
+* Os repositories são um por agregado
+
+<div id='repository'/>
+
+Para criar basta criar uma interface assim:
+
+Parei em 01:36:22 3.17. do bloco 4
