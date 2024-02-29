@@ -11,8 +11,10 @@ import com.example.alga_works_1.aula1.core.helper.Print;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
+import lombok.Value;
 
 @Controller
+@Value
 public class PrimeiroController implements BeanLifeCycle, EventObserver<Integer> {
     @GetMapping("/hello")
     @ResponseBody
@@ -21,14 +23,14 @@ public class PrimeiroController implements BeanLifeCycle, EventObserver<Integer>
         return "Hello";
     }
 
-    @Override
     @PreDestroy
+    @Override
     public void onDestroy() {
         Print.ln("Destroy");
     }
-
-    @Override
+    
     @PostConstruct
+    @Override
     public void onInit() {
         Print.ln("Init");
     }
