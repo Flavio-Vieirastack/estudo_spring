@@ -28,6 +28,7 @@
 - [Mudar nome das chaves principais](#main-keys-name)
 - [Customizando os Status HTTP](#http-status)
 - [Mudando o path de um endpoint e avisando o cliente sobre a mudança](#address)
+- [Post](#post)
 
 <div id='comandos'/>
 
@@ -380,6 +381,8 @@ Com isso feito basta rodar o projeto e o spring irá fazer toda a mágica sozinh
 
 <div id='drop'/>
 
+# Drop automático em dev
+
 Basta adicionar no application.properties o seguinte comando
 
 ```spring.jpa.properties.hibernate.ddl-auto=update```
@@ -392,6 +395,8 @@ Apenas recomendação: é melhor usar ferramentas ddl se você não quiser adivi
 
 <div id='ddd'/>
 
+# DDD
+
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/5182eb8a-5093-4be4-90be-cc2c6acd7e50)
 
 * O AgregateRoot é a Entidade principal dessa tabela sendo as outras filha dessa
@@ -399,11 +404,9 @@ Apenas recomendação: é melhor usar ferramentas ddl se você não quiser adivi
 * Se uma tabela em outro agregado se comunicar com a outra essa deve apontar para o AgregateRoot do outro agregado
 * Os repositories são um por agregado
 
-<div id='repository'/>
-
-Para criar basta criar uma interface assim:
-
 <div id='many'/>
+
+# Muitos para um
 
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/9fe04636-4efe-4c9d-9338-2aea32477ce7)
 
@@ -417,6 +420,8 @@ E para mudar o nome da coluna no banco, basta fazer dessa forma:
 
 <div id='id-data'/>
 
+# Buscando dados por id
+
 Para buscar um dado por id basta fazer assim:
 
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/389046ef-afa7-4883-bbc2-db2c4ea36d50)
@@ -427,11 +432,15 @@ ou dessa forma:
 
 <div id='keys-name'/>
 
+# Mudando nome da key no json
+
 Para mudar apenas o nome da chave no json sem alterar o nome das variáveis no spring basta fazer dessa forma:
 
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/8482d90e-aa56-4514-b7c0-06c71dca9abd)
 
 <div id='exclude-data'/>
+
+# Removendo campos do json
 
 Para remover um campo do json basta fazer dessa forma:
 
@@ -441,6 +450,8 @@ OBS: PARA FUNCIONAR TEM QUE REMOVER O @JSONPROPERTY
 
 <div id='main-keys-name'/>
 
+# Mudando nome das chaves de uma tabela no json
+
 Para mudar o nome de uma chave que faz referência a outra tabela basta fazer assim:
 
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/4a312aeb-b4bb-44d7-8c8e-22d823ecaef3)
@@ -448,6 +459,8 @@ Para mudar o nome de uma chave que faz referência a outra tabela basta fazer as
 OBS: FUNCIONA APENAS EM XML E LEMBRE-SE DE MUDAR O NOME DO ENPOINT
 
 <div id='http-status'/>
+
+# HTTP Status
 
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/7be2ac4e-a8dc-4b8e-bbec-107deb9a32ab)
 
@@ -461,6 +474,8 @@ Outra forma de fazer o mesmo e com menos código seria dessa forma:
 
 <div id='address'/>
 
+# Mudando endereço de um url
+
 Em caso de mudança de um path para outro endereço você deverá retornar o status 302 com headers informando o novo endereço, dessa forma.
 
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/11abf8f8-b009-4176-9d97-ea927f394a5b)
@@ -471,3 +486,10 @@ Fazendo assim quando uma requisição chegar ela vai ser redirecionada para o lo
 
 O cliente será informado onde fica a nova url
 
+<div id='post'/>
+
+# POST
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/3cdb2e31-a823-472d-8b25-b106b3f55a86)
+
+Parei no bloco 4 aula de post
