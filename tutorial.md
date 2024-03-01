@@ -21,6 +21,13 @@
 - [Dropar as colunas assim que a aplicação subir](#drop)
 - [DDD](#ddd)
 - [Repository](#repository)
+- [Many to one](#many)
+- [Buscando dados por ID](#id-data)
+- [Mudar nome das chaves do json apenas no json](#key-name)
+- [Remover dados do json](#exclude-data)
+- [Mudar nome das chaves principais](#main-keys-name)
+- [Customizando os Status HTTP](#http-status)
+- [Mudando o path de um endpoint e avisando o cliente sobre a mudança](#address)
 
 <div id='comandos'/>
 
@@ -396,4 +403,71 @@ Apenas recomendação: é melhor usar ferramentas ddl se você não quiser adivi
 
 Para criar basta criar uma interface assim:
 
-Parei em 01:36:22 3.17. do bloco 4
+<div id='many'/>
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/9fe04636-4efe-4c9d-9338-2aea32477ce7)
+
+No exemplo a cima nós vemos que muitos restaurantes tem uma cozinha então na entidade basta fazer assim:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/b347f42f-0ae8-4e3a-a10b-eadf1a471144)
+
+E para mudar o nome da coluna no banco, basta fazer dessa forma:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/4de7be6a-aeba-4582-9f9d-ee3ac9984ecd)
+
+<div id='id-data'/>
+
+Para buscar um dado por id basta fazer assim:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/389046ef-afa7-4883-bbc2-db2c4ea36d50)
+
+ou dessa forma:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/363cb08f-abc8-43c1-822d-6facb09afac3)
+
+<div id='keys-name'/>
+
+Para mudar apenas o nome da chave no json sem alterar o nome das variáveis no spring basta fazer dessa forma:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/8482d90e-aa56-4514-b7c0-06c71dca9abd)
+
+<div id='exclude-data'/>
+
+Para remover um campo do json basta fazer dessa forma:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/a8727811-ce90-47dd-97f9-70e36619758f)
+
+OBS: PARA FUNCIONAR TEM QUE REMOVER O @JSONPROPERTY
+
+<div id='main-keys-name'/>
+
+Para mudar o nome de uma chave que faz referência a outra tabela basta fazer assim:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/4a312aeb-b4bb-44d7-8c8e-22d823ecaef3)
+
+OBS: FUNCIONA APENAS EM XML E LEMBRE-SE DE MUDAR O NOME DO ENPOINT
+
+<div id='http-status'/>
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/7be2ac4e-a8dc-4b8e-bbec-107deb9a32ab)
+
+Como mostrado a cima essa é a forma certa de retornar um objeto para o cliente, retornar um ResponseEntity, aqui poderiam ser feito validações como por exemplo se o dado buscado for diferente de nulo retorna HttpStatus.ok e caso não retornar uma 404 por exemplo
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/6bd76448-672c-4ec1-b969-3cd793545397)
+
+Outra forma de fazer o mesmo e com menos código seria dessa forma:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/a1143b46-3e62-456b-a3f8-3d171225682f)
+
+<div id='address'/>
+
+Em caso de mudança de um path para outro endereço você deverá retornar o status 302 com headers informando o novo endereço, dessa forma.
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/11abf8f8-b009-4176-9d97-ea927f394a5b)
+
+Fazendo assim quando uma requisição chegar ela vai ser redirecionada para o local atribuido e um header informará onde está o novo local. O resultado no postman será esse:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/b3d68302-f746-4d0e-8aaf-f6a3377e3cb2)
+
+O cliente será informado onde fica a nova url
+
