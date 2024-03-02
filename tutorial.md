@@ -33,6 +33,8 @@
 - [Delete](#delete)
 - [Domain Service](#domain-service)
 - [JPA](#jpa)
+- [Query methods](#query)
+- [Query Custom](#query-custom)
 
 <div id='comandos'/>
 
@@ -527,6 +529,50 @@ E para criar o repositorio basta fazer assim:
 
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/1f379140-c1b0-493a-b733-0e158535f76b)
 
-Parei em
+<div id='query'/>
 
-![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/484e9d11-b9d2-47eb-9a86-4335a166e881)
+# Query methods
+
+São usados para criar queries usando comandos como o findBy
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/108a48fa-fcfd-4555-9163-4e8f705fcef7)
+
+Aqui se usa o findBy junto com o nome do campo no json, o jpa já reconhece e faz a busca
+
+Nesse link se pode consultar as keywords do jpa: https://docs.spring.io/spring-data/jpa/reference/repositories/query-keywords-reference.html
+
+exemplo de uso
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/5194718b-e4a8-4e71-90a0-f99625e8f2c9)
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/08b01f9d-c9ee-4ed0-a299-1114c1afe7de)
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/6ca9b03e-b72a-4dab-81b7-ac529e600318)
+
+Nesse exemplo a cima eu estou buscando um dado de um objeto e outro dado dentro de outro objeto aninhado
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/1434c232-abef-4cc4-9811-a00d0e4ef2f8)
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/6d1b79df-2ba2-4dcb-9d6e-03058be7c0e3)
+
+No exemplo a cima eu estou buscando apenas os primeiros dois campos da busca
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/98339149-f037-4db0-8053-e8c2829aee44)
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/4abda01a-01f4-409c-bde9-9b7552c09cdb)
+
+No exemplo a cima eu estou buscando quantos restaurantes tem cadastrados nessa cozinha
+
+No postman o resultado será esse:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/0b48f487-99a7-4377-a2cb-746878e19fd1)
+
+<div id='query-custom'/>
+
+# Query methods customizados
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/62837452-4029-41cf-9999-9b3479bddbdf)
+
+A anottation @Param serve para quando o nome do parâmetro na string da consulta é diferente do nome do parâmetro recebido
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/11691efd-74c1-47af-9e7c-0083fbc6afcf)
