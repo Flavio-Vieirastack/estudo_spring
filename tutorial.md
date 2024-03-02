@@ -29,6 +29,10 @@
 - [Customizando os Status HTTP](#http-status)
 - [Mudando o path de um endpoint e avisando o cliente sobre a mudança](#address)
 - [Post](#post)
+- [Put](#put)
+- [Delete](#delete)
+- [Domain Service](#domain-service)
+- [JPA](#jpa)
 
 <div id='comandos'/>
 
@@ -424,11 +428,9 @@ E para mudar o nome da coluna no banco, basta fazer dessa forma:
 
 Para buscar um dado por id basta fazer assim:
 
-![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/389046ef-afa7-4883-bbc2-db2c4ea36d50)
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/90fde666-f3fa-419b-9115-ea3770a60b17)
 
-ou dessa forma:
-
-![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/363cb08f-abc8-43c1-822d-6facb09afac3)
+O Optional é um tratamento de nulo com ele nós garantimos que o dado nunca seja nulo
 
 <div id='keys-name'/>
 
@@ -492,4 +494,39 @@ O cliente será informado onde fica a nova url
 
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/3cdb2e31-a823-472d-8b25-b106b3f55a86)
 
-Parei no bloco 4 aula de post
+<div id='put'/>
+
+# Put
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/a86df9aa-39a3-407c-a5ef-7708779b606e)
+
+O parâmetro "id" passado no BeanUtils significa o parâmetro que eu não quero copiar da classe que está sendo mandada pelo cliente
+
+<div id='delete'/>
+
+# Delete
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/ea15fa8a-e247-4c65-8b73-fcb22e3f5ded)
+
+No exemplo a cima não mostra más e bom retornar um corpo mostrando o porque deu erro ao deletar o dado, nesse caso o try catch foi necessário pois existe uma relação entre a cozinha e o restaurante portanto não pode deletar essa cozinha do banco
+
+<div id='domain-service'/>
+
+# Domain service
+
+Nada mais é do que a pasta service com os codigos que tem acesso direto ao repository
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/ed47a043-6997-4e60-8802-321037b1d494)
+
+<div id='jpa'/>
+
+# Spring data JPA
+
+Primeiro e preciso da dependencia do JPA
+E para criar o repositorio basta fazer assim:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/1f379140-c1b0-493a-b733-0e158535f76b)
+
+Parei em
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/484e9d11-b9d2-47eb-9a86-4335a166e881)
