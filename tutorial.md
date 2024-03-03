@@ -665,7 +665,7 @@ Feito isso nós precisamos implementar o nosso novo método, então vamos criar 
 
 Depois disso nós vamos precisar do EntityManager e de um construtor que chame a classe Super do JPA
 
-![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/97081648-7caf-4931-8d28-d1eaf0b79c82)
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/085124d5-54aa-4fa8-85f1-bcdfa9c9ccf1)
 
 Como nós precisamos do EntityManager e já recebemos ele pelo consturtor então vamos criar uma variável para salvar esse EntityManager na nossa classe
 
