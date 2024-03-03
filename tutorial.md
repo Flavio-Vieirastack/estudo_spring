@@ -687,3 +687,4 @@ Feito isso basta ir na controller e chamar o método
 
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/429fdf13-39ab-4c42-8610-ecabd48db1e5)
 
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/98682fb9-d415-4b2d-a21b-a3d9811fc5f6)
