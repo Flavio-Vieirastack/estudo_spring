@@ -35,6 +35,10 @@
 - [JPA](#jpa)
 - [Query methods](#query)
 - [Query Custom](#query-custom)
+- [Specifications do DDD](#spec)
+- [Fábrica de Specifications do DDD](#spec-factory)
+- [Melhorando a fábrica de Specifications do DDD](#spec-factory-increase)
+- [Criando um repositorio JPA customizado](#jpa-custom)
 
 <div id='comandos'/>
 
@@ -575,4 +579,111 @@ No postman o resultado será esse:
 
 A anottation @Param serve para quando o nome do parâmetro na string da consulta é diferente do nome do parâmetro recebido
 
-![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/11691efd-74c1-47af-9e7c-0083fbc6afcf)
+<div id='spec'/>
+
+# Implementanco Specifications do DDD
+
+Esse padrão nada mais é do que montar uma query mais robusta baseado no padrão Specification do DDD, isso se baseia em transformar uma consulta sql em uma classe que poderá ser chamada e fazer a busca customizada, no meu caso eu vou usar como exemplo uma busca por restaurante com frete gratis e uma busca por restaurantes com nomes semelhantes
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/c25f3dac-5b0c-48eb-9f9c-9e3e63fb47c8)
+
+Como visto a cima o padrão é o nome da classe com Spec no final e ela deve implementar uma Specification com a entidade a ser retornada, isso vai te obrigar a implementar um serialNumber e uma função
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/1f1a13b3-5b29-40c7-817e-c0f70b479acc)
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/72a477d3-2770-42b9-b377-973065e65be4)
+
+Criado os dois Specs você precisa ir no repository e herdar mais uma interface
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/fa0d3457-d694-49aa-979d-9aab497cd8a3)
+
+Agora na controller basta instanciar as duas Spec e chamar o repository assim:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/98f5243d-f548-4f29-9c1a-a8fb33e5c1ca)
+
+O resultado no postman será esse
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/b194aa54-bf0c-4035-aec5-4bfe505c682d)
+
+<div id='spec-factory'/>
+
+# Fazendo uma fábrica de Specifications do DDD
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/9f01a4ff-1232-462a-b103-4e790056a9b1)
+
+<div id='spec-factory-increase'/>
+
+# Melhorando a fábrica de Specifications do DDD
+
+Como vimos a cima não é uma boa idéia ter sempre que ficar chamando a classe de spec em todos os lugares que quiser usar principalmente nas controller, então vamos melhorar isso injetando as nossas spects direto no repository
+
+Primeiro passo, criar uma interface para esses métodos
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/eb8f945c-b2f3-4d4b-8204-98a87ab70e95)
+
+Segundo passo implementar o método
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/ac807afc-e87d-47a3-af0a-762b028d832b)
+
+Más antes de implementar nós vamos precisar de uma instancia do repository da JPA nessa classe
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/2cbb59f5-a460-43c4-9488-865d1342209b)
+
+A anotação @Lazy serve para evitar dependência ciclica
+
+E agora e só chamar os métodos
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/33f6ae4f-7e1f-428a-8983-5fbb931a2156)
+
+<div id='jpa-custom'/>
+
+# Criando um repository JPA custom
+
+As vezes nós precisamos adicionar métodos a o repository jpa para fazer consultas que ele não faz por padrão e para fazer isso basta:
+
+Criando uma interface que estenda da interface da JPA
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/ed86180f-0f87-4392-87f4-ceb35dd3289e)
+
+A diferença aqui é que a anotação @NoRepoisitoryBean faz com que o Spring não reconheça como um repositorio JPA
+
+Para deixar a nossa interface ainda mais customizada vamos usar os generics
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/6b239289-de0e-4e65-9a99-a0db5cb251cf)
+
+Eu vou criar um método que vai buscar apenas a primeira ocorrência no banco
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/e80b9b16-f952-4f54-adb0-27212f2db521)
+
+Agora no nosso repository no lugar de herdar de JPaRepository nós vamos herdade de CustomJPARepository
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/ee251964-4fc6-41ee-88a8-7c4494c22248)
+
+Feito isso nós precisamos implementar o nosso novo método, então vamos criar a classe, lembre-se que ela deve estender de SimpleJPARepository
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/4dbc1f42-cb57-4d2e-9a29-7dec2c905349)
+
+Depois disso nós vamos precisar do EntityManager e de um construtor que chame a classe Super do JPA
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/97081648-7caf-4931-8d28-d1eaf0b79c82)
+
+Como nós precisamos do EntityManager e já recebemos ele pelo consturtor então vamos criar uma variável para salvar esse EntityManager na nossa classe
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/d6661643-46b0-48dd-9728-162bf7832f12)
+
+Feito isso vamos implementar o método
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/676172b5-24cb-47ef-be1e-f3d0f159fcfa)
+
+Aqui vai algumas explicações, nós estamos fazendo essa interface para buscar qualquer entidade via generics então por isso que usamos a função getDomainClass() Que busca os dados da classe que está sendo passada nos generics
+
+Com isso feito nós precisamos ativar o customRepository e isso e feito na raiz do projeto assim
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/82dbb555-7950-440b-84fb-c78a65bcc1dc)
+
+Lembre-se que deve ser a classe de implementação a ser chamada
+
+Feito isso basta ir na controller e chamar o método
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/429fdf13-39ab-4c42-8610-ecabd48db1e5)
+
