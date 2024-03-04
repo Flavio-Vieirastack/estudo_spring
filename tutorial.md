@@ -39,6 +39,16 @@
 - [Fábrica de Specifications do DDD](#spec-factory)
 - [Melhorando a fábrica de Specifications do DDD](#spec-factory-increase)
 - [Criando um repositorio JPA customizado](#jpa-custom)
+- [One to many](#one-to-many)
+- [Many to many](#many-to-many)
+- [Resolvendo problema de atualização de dados no banco quando a tabela tem relacionamento](#problem-update)
+- [Componentizando entidades @Embedable](#entity-component)
+- [Adicionando data de cadastro e de atualização](#date)
+- [Adicionando serialização sob demanda com @Lazy](#serialization-demand)
+- [Pool de conexões](#pool)
+- [Extressando o banco de dados para teste](#xtress)
+- [Adicionando o flyway](#flyway)
+- [Gerando Schemmas para o flyway automaticamente](#flyway-auto)
 
 <div id='comandos'/>
 
@@ -687,4 +697,193 @@ Feito isso basta ir na controller e chamar o método
 
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/429fdf13-39ab-4c42-8610-ecabd48db1e5)
 
-![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/98682fb9-d415-4b2d-a21b-a3d9811fc5f6)
+<div id='one-to-many'/>
+
+# One to many
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/4b32329a-9b99-4945-8953-0bf0bf8462c0)
+
+Normalmente essa relação e feita no objeto oposto ao Many to one, exemplo você tem uma entidade Restaurate e ela tem uma relação Many to one com a entidade Cozinha, então você tem que ir na entidade Cozinha e fazer uma relação One To many com a Entidade restaurante
+
+Feito isso nós precisamos dizer quem que está mapeando as cozinhas na outra entidade ou seja na entidade Restaurante
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/aa6a79df-9f4e-45fc-82f9-bf4dd81b250c)
+
+Como vemos a cima na entidade Restaurante a variável cozinha é que está mapeando a entidade Cozinha nessa tabela, então basta fazer isso:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/aed9ad2f-8a58-4e3b-b04f-2a6e3b1b3c42)
+
+Com isso feito nós iremos ter um problema de serialização cíclica, e para resolver isso basta
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/7ebe8e40-d85f-40b4-8829-5315ad8efb08)
+
+Isso vai fazer com que na entidade Cozinha ela não serialize a entidade Restaurante. É importante fazer essa relação dupla pois mesmo qe não mostrado os dados de restaurante em cozinha a lista ainda é populada e você poderá precisar desses dados depois, más isso depende da regra de negócio nem sempre é preciso fazer essa relação.
+
+<div id='many-to-many'/>
+
+# Many to many
+
+Como estamos trabalhando com a entidade Restaurante, muitos Restaurante pode ter muitas formas de pagamentos
+
+Primeiro passo ir na entidade de restaurantes e fazer assim:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/42176964-c216-4ea7-9515-0ac917c18ea5)
+
+Para mudar o nome padrão dado a tabela fazemos assim:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/de3438c1-1ac9-491a-956a-c83c44da551d)
+
+Para renomear o nome da chave estrangeira no banco nós fazemos assim:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/f30ce9d4-639a-4953-b097-81738166e186)
+
+Para renomear o nome da chave estrangeira que faz referencia a tabela FormaPagamento nós fazemos assim:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/ec2b591f-85a9-4cdd-bb1a-e3539dbea4d5)
+
+<div id='problem-update'/>
+
+# Resolvendo problemas de atualização de dados no banco, quando esses dados tem relação com outras tabelas
+
+Quando as tabelas tem um relacionamento e sempre bom testar os metodos de atualizar dados nessa tabela, nesse caso a cima quando nós tentamos atualizar os dados de um Restaurante ele perde todas as suas formas de pagamento, esse problema é gerado no BeanUtils, quando nós copiamos um objeto para outro objeto, e nós conseguimos resolver assim:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/a410ebbf-e3dd-43d9-998d-72ee5ad31f78)
+
+Basta adicionar o nome da variável formasPagamento para que ele não copie os dados da lista para o novo objeto. Lembrando que esse problema acontece somente se você não tiver DTOs.
+
+<div id='entity-component'/>
+
+# Componentizando entidades
+
+Um bom exemplo disso é a nossa entidade Restaurante, todo restaurante tem um endereço, e para não deixar a nossa entidade muito grande nós vamos criar uma classe Endereço que será importada pela entidade Restaurante, nós fazemos isso com objetos embutidos, elas não são entidades são apenas objetos que serão incorporados por outras entidades
+
+Criando a classe Endereço
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/7d63a689-2360-4e63-b24b-9db774a5c731)
+
+Agora vamos anotar a classe
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/fa3aad97-c93c-4105-ad08-44230487f509)
+
+Customizando o nome das colunas
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/f068f7b4-eda0-44c2-a343-58b225ac6c34)
+
+Adicionando relacionamento com a tabela Cidade
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/84c4b5be-7886-420e-b594-9f2bde77039b)
+
+Agora vamos a entidade Restaurante e incorporar essa classe de Endereço assim:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/21bce255-2578-43ab-b19f-bcdd98f470ec)
+
+<div id='date'/>
+
+# Adicionando data de cadastro e atualização
+
+Primeiro vamos adicionar as propriedades
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/045bb8d6-4424-48c0-a0ef-c435d6b9eb0f)
+
+Adicionando as anotações
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/652910f3-3714-46f1-b5b1-b6e624387a34)
+
+Basta fazer isso para adicionar as datas, porém elas vem com milisegundos ao final da data e para remover os milisegundos basta fazer isso:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/985fcdfc-1bdd-4dd3-baaf-8ab43ced4900)
+
+<div id='serialization-demand'/>
+
+# Adicionando serialização sob demanda com @Lazy
+
+Quando temos relações que terminam com ToOne o jpa sempre irá fazer vários selects no banco mesmo com a anotação @JsonIgnore, para resolver isso basta:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/015b4668-4379-4ea7-b8da-f1cf3d9bbce3)
+
+<div id='pool'/>
+
+# Pool de conexões
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/d8759712-8c57-435d-8534-ee1496c6fcf2)
+
+Sem o pool o usuário faz a requisição, ela é processada e a api interage com o banco fechando a conexão com o banco logo em seguida ficando assim:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/d565aa10-08e4-4d03-93ad-2ba3075cdd36)
+
+Agora imagine que uma segunda requisição foi feita, todo o processo será repetido
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/78e43213-6616-4255-9266-0a5d43edd7c1)
+
+E assim por diante. Agora imagine que nós vamos receber várias requisições simultâneas
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/8c95207e-0711-4c3c-8396-8f20c8069251)
+
+Esse processo irá acontecer para todas essas requisições. A forma de resolver isso é com um pool de conexão, ele irá manter um conjunto de conexões para reutilização
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/249b4b19-db80-4650-872b-2a1d286abeba)
+
+No Exemplo a cima a aplicação está rodando sem requisições no momento, más ainda sim existem algumas conexões criadas
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/d670d138-e9d8-48cb-b577-4582e985309e)
+
+Agora quando as conexões chegam ele usa as conexões aberta e cria outras caso seja necessário ou coloca na fila caso seja configurado para um número máximo de conexões
+
+A forma de implementar isso é usando o Hiraki que é o padrão do spring e por padrão o spring já faz isso más nós podemos configurar no application.properties, assim:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/836241de-ef01-48b7-ab40-2fcd9b6e7f2a)
+
+Também e possível criar um timeout, imagine que a api passou um tempo sem requisições, com essa configuraçaõ o Hikari mata essas conexões depois de um tempo
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/3d3491e7-c1c7-40e4-83ba-ed7ae806b1aa)
+
+Lembrando que o tempo é em milisegundos
+
+<div id='xtress'/>
+
+# Estressando o banco de dados para teste
+
+Para isso é preciso do apache benchmark https://httpd.apache.org/docs/2.4/programs/ab.html
+
+E rodar esse comando: ab -n 1000 -c 100 http://example.com/
+
+Isso enviará 1000 solicitações ao http://example.com/, com um máximo de 100 solicitações concorrentes.
+
+<div id='flyway'/>
+
+# Flyway
+
+As queries geradas automaticamente pelo JPA não são boas de se usar em produção pois não refletem diretamente certas mudanças no banco, então temos a necessidade de usar o flyway pois com ele conseguimos versionar as nossas migrações, portanto o ideal é usar o flyway logo no inicio do projeto
+
+Passo 1: Adicionar a dependencia
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/9b944ad8-f0c9-4a82-a4a1-0bf69ea583d4)
+
+Se você rodar o projeto verá um erro em tela pois o spring não consegue encontrar as suas migrações, então em resources crie essas duas pastas
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/f5bd27b1-7a31-4c7d-b470-0b79f967e8f2)
+
+Vamos criar nosso primeiro script de migração
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/8f699ea1-d341-46ff-9077-7acbacc15f8d)
+
+O nome do arquivo deve seguir um padrão, sempre começar com V maiúsculo depois do V você deve colocar um número, depois do número dois underscore e o nome do arquivo.sql. Esse será o resultado:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/8bcbdde2-7480-49ad-afa7-f4d8a08ac0da)
+
+<div id='flyway-auto'/>
+
+# Gerando Schemas automáticamente
+
+Primeiro passo, no application.properties adicione essa linha
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/bc94b569-ee11-4b19-863e-e2257dc4c469)
+
+Com isso feito o jpa vai gerar os scripts para você sem fazer a migração. Agora nós precisamos especificar um caminho para esses scripts ficarem
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/6f39f8ff-4ef9-4c9e-8a76-6912125d060d)
+
+Com isso feito assim que rodar o projeto ele vai criar toda a migração para nós, então basta comentar as duas linhas que adicionamos no application.properties pois o sql gerado já se refere a todas as nossas migrações e revise o sql gerado
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/2e1f6b91-21b8-4cd1-9ed7-76216b558e6c)
+
