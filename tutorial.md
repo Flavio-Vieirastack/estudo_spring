@@ -49,6 +49,10 @@
 - [Extressando o banco de dados para teste](#xtress)
 - [Adicionando o flyway](#flyway)
 - [Gerando Schemmas para o flyway automaticamente](#flyway-auto)
+- [Populando tabelas com o flyway](#flyway-populate)
+- [Populando tabelas com o flyway somente em dev](#flyway-populate-dev)
+- [Tratando erros em migrações](#flyway-error)
+- [Melhorando o tratamento de erros](#custom-errors)
 
 <div id='comandos'/>
 
@@ -885,5 +889,73 @@ Com isso feito o jpa vai gerar os scripts para você sem fazer a migração. Ago
 
 Com isso feito assim que rodar o projeto ele vai criar toda a migração para nós, então basta comentar as duas linhas que adicionamos no application.properties pois o sql gerado já se refere a todas as nossas migrações e revise o sql gerado
 
-![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/2e1f6b91-21b8-4cd1-9ed7-76216b558e6c)
+<div id='flyway-populate'/>
 
+# Populando dabelas com flyway
+
+Primeiro passo criar um arquivo sql dentro da pasta migrations exatamente com esse nome
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/ef81a200-7030-4e06-b3ca-33a3a8905c19)
+
+Feito isso basta criar o script sql para popular dados no banco, o ignore no script é obrigatório pois assim ele so insere caso não tenha dados no banco
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/4f0264d4-1e7c-4992-bd78-80f2a19f145b)
+
+Outra forma de fazer isso é da seguinte forma:
+
+Primeiro passo:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/21797d13-8dda-437a-95e3-a1439b9d298b)
+
+Aqui eu estou desabilitando a checagem de chaves estrangeiras e deletando todas a tabelas
+
+Segundo passo:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/6e52d2ee-3b15-45c1-a530-bc919951922f)
+
+Aqui eu estou setando novamente as chaves e mantendo os dados salvos na tabela, lembre-se de não fazer isso nas tabelas de asossiação, ou seja as tabelas que guardam somente as chaves estrangeiras
+Com isso feito basta fazer as inserções
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/b3a0f5ba-ee6a-47cb-9181-ec88e7bbfa0b)
+
+<div id='flyway-populate-dev'/>
+
+# Populando dabelas com flyway somente em desenvolvimento
+
+Primeiro passo, em resources/db crie uma pasta, ela pode conter qualquer nomenclatura
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/f9473c48-2a9a-49df-b974-c157a789f302)
+
+Segundo passo, mova o afterMigrate.sql para lá
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/4107f509-ba0a-46a1-8828-7ce3cecf1f52)
+
+Agora no application.properties aponte onde estão as suas pastas de migrações e a de popular dados
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/db7d71e4-2cc1-4125-b274-1770feebaf64)
+
+Feito isso basta criar um application.properties para cada ambiente só que no de homol e release você omite esses dados a cima que o flyway só vai procurar os dados dentro de db/migration
+
+<div id='flyway-error'/>
+
+# Tratando migrações com erros
+
+Sempre que uma migração falhar você precisa ir no flyway-schemma-history e deletar do banco essa migração que falhou, caso contrário o flyway não deixar fazer essa mesma migração novamente, isso funciona bem para migrações simples más em migrações complexas você precisaria deletar as tabelas que foram criadas com sucesso.
+
+Uma forma simples de resolver isso é criando um arquivo chamado flyway.properties e adicionando esses comandos:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/1b698816-f6ea-41c2-be6c-3fca2abbd152)
+
+Com isso pronto rode esse comando
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/c532fa7d-7139-4150-be60-aa805f7b12be)
+
+depois do src/ passe o caminho onde está o flyway.properties
+
+<div id='custom-errors'/>
+
+# Melhorando o tratamento de erros
+
+Primero nós devemos saber que somente as controllers que devem tratar os erros, portanto esses erros nós vamos fazer exclusivamente nas controllers
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/5341e8dd-95c4-4cb1-921a-901729d080f3)
