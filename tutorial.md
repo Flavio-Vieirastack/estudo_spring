@@ -959,3 +959,4 @@ depois do src/ passe o caminho onde está o flyway.properties
 Primero nós devemos saber que somente as controllers que devem tratar os erros, portanto esses erros nós vamos fazer exclusivamente nas controllers
 
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/5341e8dd-95c4-4cb1-921a-901729d080f3)
+
