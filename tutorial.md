@@ -956,7 +956,16 @@ depois do src/ passe o caminho onde está o flyway.properties
 
 # Melhorando o tratamento de erros
 
-Primero nós devemos saber que somente as controllers que devem tratar os erros, portanto esses erros nós vamos fazer exclusivamente nas controllers
+Primero nós devemos saber que somente as controllers ou services que devem tratar os erros, portanto esses erros nós vamos fazer exclusivamente nas controllers
 
-![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/5341e8dd-95c4-4cb1-921a-901729d080f3)
+Então vamos criar a nossa exception dessa forma:
 
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/6daeb537-bb1b-4a86-9189-2d03f4c2e39d)
+
+Com isso feito vamos melhorar nosso tratamento de erro
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/26a71f5a-b629-4db8-838b-a0133f155744)
+
+Simples assim
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/a0d6fc27-cf5e-48f3-984e-d35fd97c46a7)
