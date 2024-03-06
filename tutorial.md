@@ -413,6 +413,8 @@ Exemplo de um mapeamento usando JPA:
 
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/4c4b528a-bf6b-4cf0-8e89-b9e47a4fd152)
 
+[Inicio](#init)
+
 <div id='mapping'/>
 
 # Criando mapeamento objeto relacional
@@ -460,6 +462,8 @@ Apenas recomendação: é melhor usar ferramentas ddl se você não quiser adivi
 
 <div id='ddd'/>
 
+[Inicio](#init)
+
 # DDD
 
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/5182eb8a-5093-4be4-90be-cc2c6acd7e50)
@@ -500,6 +504,8 @@ O Optional é um tratamento de nulo com ele nós garantimos que o dado nunca sej
 Para mudar apenas o nome da chave no json sem alterar o nome das variáveis no spring basta fazer dessa forma:
 
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/8482d90e-aa56-4514-b7c0-06c71dca9abd)
+
+[Inicio](#init)
 
 <div id='exclude-data'/>
 
@@ -549,6 +555,8 @@ Fazendo assim quando uma requisição chegar ela vai ser redirecionada para o lo
 
 O cliente será informado onde fica a nova url
 
+[Inicio](#init)
+
 <div id='post'/>
 
 # POST
@@ -588,6 +596,8 @@ E para criar o repositorio basta fazer assim:
 
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/1f379140-c1b0-493a-b733-0e158535f76b)
 
+[Inicio](#init)
+
 <div id='query'/>
 
 # Query methods
@@ -625,6 +635,8 @@ No exemplo a cima eu estou buscando quantos restaurantes tem cadastrados nessa c
 No postman o resultado será esse:
 
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/0b48f487-99a7-4377-a2cb-746878e19fd1)
+
+[Inicio](#init)
 
 <div id='query-custom'/>
 
@@ -666,6 +678,8 @@ O resultado no postman será esse
 
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/9f01a4ff-1232-462a-b103-4e790056a9b1)
 
+[Inicio](#init)
+
 <div id='spec-factory-increase'/>
 
 # Melhorando a fábrica de Specifications do DDD
@@ -689,6 +703,8 @@ A anotação @Lazy serve para evitar dependência ciclica
 E agora e só chamar os métodos
 
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/33f6ae4f-7e1f-428a-8983-5fbb931a2156)
+
+[Inicio](#init)
 
 <div id='jpa-custom'/>
 
@@ -764,6 +780,8 @@ Com isso feito nós iremos ter um problema de serialização cíclica, e para re
 
 Isso vai fazer com que na entidade Cozinha ela não serialize a entidade Restaurante. É importante fazer essa relação dupla pois mesmo qe não mostrado os dados de restaurante em cozinha a lista ainda é populada e você poderá precisar desses dados depois, más isso depende da regra de negócio nem sempre é preciso fazer essa relação.
 
+[Inicio](#init)
+
 <div id='many-to-many'/>
 
 # Many to many
@@ -821,6 +839,8 @@ Adicionando relacionamento com a tabela Cidade
 Agora vamos a entidade Restaurante e incorporar essa classe de Endereço assim:
 
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/21bce255-2578-43ab-b19f-bcdd98f470ec)
+
+[Inicio](#init)
 
 <div id='date'/>
 
@@ -884,6 +904,8 @@ Também e possível criar um timeout, imagine que a api passou um tempo sem requ
 
 Lembrando que o tempo é em milisegundos
 
+[Inicio](#init)
+
 <div id='xtress'/>
 
 # Estressando o banco de dados para teste
@@ -929,6 +951,8 @@ Com isso feito o jpa vai gerar os scripts para você sem fazer a migração. Ago
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/6f39f8ff-4ef9-4c9e-8a76-6912125d060d)
 
 Com isso feito assim que rodar o projeto ele vai criar toda a migração para nós, então basta comentar as duas linhas que adicionamos no application.properties pois o sql gerado já se refere a todas as nossas migrações e revise o sql gerado
+
+[Inicio](#init)
 
 <div id='flyway-populate'/>
 
@@ -976,6 +1000,8 @@ Agora no application.properties aponte onde estão as suas pastas de migrações
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/db7d71e4-2cc1-4125-b274-1770feebaf64)
 
 Feito isso basta criar um application.properties para cada ambiente só que no de homol e release você omite esses dados a cima que o flyway só vai procurar os dados dentro de db/migration
+
+[Inicio](#init)
 
 <div id='flyway-error'/>
 
@@ -1039,6 +1065,8 @@ O resultado no postman será esse
 
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/c93e4fb3-9117-4962-9c6b-50f0502b4aa4)
 
+[Inicio](#init)
+
 <div id='global-error'/>
 
 # Criando erros globais
@@ -1093,6 +1121,8 @@ Com isso feito nós podemos melhorar os outros métodos na nossa classe global d
 
 Basta substituir os codigos por esse nosso metodo que foi feito o override, e o WebRequest que nós pedimos como parâmetro o Spring irá nos fornecer
 
+[Inicio](#init)
+
 <div id='problem-details'/>
 
 # Criando body customizados usando o Problem details for HTTP Apis
@@ -1142,6 +1172,8 @@ Vamos implementar um método com type e detail
 O resultado será esse:
 
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/13dd2d4c-1665-4eed-b3ba-fd788bcfa157)
+
+[Inicio](#init)
 
 <div id='error-increase'/>
 
