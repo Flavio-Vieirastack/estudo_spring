@@ -53,6 +53,9 @@
 - [Populando tabelas com o flyway somente em dev](#flyway-populate-dev)
 - [Tratando erros em migrações](#flyway-error)
 - [Melhorando o tratamento de erros](#custom-errors)
+- [Tratando erros com @ExceptionHandler](#error-handler)
+- [Customizando body do erro](#error-class)
+- [Criando erros globais](#global-error)
 
 <div id='comandos'/>
 
@@ -968,4 +971,52 @@ Com isso feito vamos melhorar nosso tratamento de erro
 
 Simples assim
 
-![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/a0d6fc27-cf5e-48f3-984e-d35fd97c46a7)
+<div id='error-handler'/>
+
+# Tratando erros com @ExceptionHandler
+
+Essa anotação serve para facilitar o tratamento de erros, e ele se usa nas funções dessa forma:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/76b47cbb-fcca-4f5b-9e36-70915685e48a)
+
+Voce pode passar mais de um tipo de exception para a anotação basta colocar entre {} e separado por virgula. Agora vamos implementar o método
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/389a82e7-582c-4c6f-b713-ab1f6e0a415e)
+
+Basta fazer isso para que esse método capture todas as exceptions desse tipo capturadas pelo catch. E você pode criar outros métodos para tratar outros tipos de erro, exemplo:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/c02aefa4-9139-49d4-939e-3979f0b68ecc)
+
+<div id='error-class'/>
+
+# Criando uma classe para representar dados do erro
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/a7ed3bfb-4aa3-48f2-8e12-60523faffa87)
+
+Uma classe simples porém que usa o builder pattern, e na hora de usar nós devemos fazer assim:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/2e4c380e-ab5e-4b44-9523-b218bee75eea)
+
+O resultado no postman será esse
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/c93e4fb3-9117-4962-9c6b-50f0502b4aa4)
+
+<div id='global-error'/>
+
+# Criando erros globais
+
+Um possível problema do @ExceptionHandler dentro de um controller e que ele só irá capturar os erros desse controlador, e para deixar isso global nós devemos fazer assim:
+
+Primeiro vamos criar a classe global para o nosso erro
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/a90e570a-7f68-472a-bd5b-108f6f74d406)
+
+Agora vamos implementar métodos com as nossas exceptions
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/6d0b37ce-fe83-468b-ab9f-3a4a2724f71e)
+
+O proximo passo será anotar a nossa classe com @ControllerAdvice
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/75e1563f-2f79-4d0a-a7a0-acea98520c35)
+
+Basta fazer isso para que a nossa classe capture globalmente os erros pelo catch e manipule o body do erro
