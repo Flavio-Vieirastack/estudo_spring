@@ -60,6 +60,7 @@
 - [Criando erros com ResponseEntityExceptionHandler](#response-entity-error)
 - [Padrão de erros do Problem details for HTTP Apis](#problem-details)
 - [Melhorando a classe que representa os erros](#error-increase)
+- [Customizando mensagem de erro quando o json é inválido](#error-json)
 
 <div id='modificators'/>
 
@@ -1195,5 +1196,21 @@ Com isso feito vamos comentar as nossas instancias da classe Problem e substitui
 
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/277be1af-3920-4ea1-97bc-7c886bae4512)
 
-![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/1f1303ac-0415-4b7b-b496-e80e9ef79810)
+[Inicio](#init)
+
+<div id='error-json'/>
+
+# Customizando mensagem de erro quando o json é inválido
+
+Para fazer isso basta sobrescrever o método handlerHttpMessageNotReadble. Primeiro passo é adicionar um novo tipo de erro no enum
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/5ed8716d-c764-4fd1-a93e-14a657eb6db4)
+
+E a reescrita do método irá ficar assim:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/8841ee30-e0e2-4a13-97c2-fde0cd3618d8)
+
+O resultado será esse:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/a0640fd6-3a68-4312-8e5a-c721fef09fa0)
 
