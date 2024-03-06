@@ -5,6 +5,7 @@
 # Tutorial spring
 # Indice
   
+- [Modificadores Java](#modificators)
 - [Comandos](#comandos)
 - [Definições de nomenclaturas](#definicoes)
 - [Anotações principais](#anotacoes)
@@ -56,6 +57,43 @@
 - [Tratando erros com @ExceptionHandler](#error-handler)
 - [Customizando body do erro](#error-class)
 - [Criando erros globais](#global-error)
+- [Criando erros com ResponseEntityExceptionHandler](#response-entity-error)
+- [Padrão de erros do Problem details for HTTP Apis](#problem-details)
+- [Melhorando a classe que representa os erros](#error-increase)
+
+<div id='modificators'/>
+
+# Modificadores Java
+
+Em Java, existem quatro tipos de modificadores que podem ser aplicados a classes, métodos, variáveis e construtores. Aqui está uma visão geral de cada um deles:
+
+## Modificadores de Acesso:
+
+* public: A classe, método ou variável é acessível a qualquer classe.
+* protected: A classe, método ou variável é acessível dentro do mesmo pacote e por subclasses (mesmo que as subclasses estejam em pacotes diferentes).
+* default (também conhecido como "pacote-privado"): A classe, método ou variável é acessível apenas dentro do mesmo pacote. Se nenhum modificador de acesso for especificado, o padrão será o nível de acesso "default".
+* private: A classe, método ou variável é acessível apenas dentro da própria classe.
+
+## Modificadores de Não-Acesso:
+
+* final: Indica que uma classe não pode ser estendida, um método não pode ser sobrescrito ou uma variável não pode ser reatribuída após a inicialização.
+* static: Indica que um método ou variável pertence à classe em vez de instâncias individuais da classe.
+* abstract: Indica que uma classe deve ser estendida (não pode ser instanciada por si só) ou que um método não possui implementação e deve ser fornecido por subclasses.
+* synchronized: Controla o acesso concorrente a um método ou bloco de código, garantindo que apenas um thread possa acessá-lo por vez.
+* transient: Indica que uma variável não deve ser serializada quando a classe à qual pertence é serializada.
+* volatile: Indica que o valor de uma variável pode ser alterado por diferentes threads simultaneamente e, portanto, não deve ser armazenado em cache.
+  
+## Modificadores de Herança:
+
+* extends: Indica que uma classe herda de outra classe (somente para classes).
+* implements: Indica que uma classe implementa uma ou mais interfaces (somente para classes).
+* super: É usado para chamar o construtor da classe pai ou acessar métodos e variáveis da classe pai.
+  
+## Modificadores de Finalidade Especial:
+
+* strictfp: Restringe as operações de ponto flutuante a garantir a mesma precisão em todas as plataformas (para métodos e classes).
+* native: Indica que um método é implementado em código nativo, geralmente em outra linguagem (como C/C++).
+* assert: Usado para testes de asserção durante o desenvolvimento.
 
 <div id='comandos'/>
 
@@ -1020,3 +1058,110 @@ O proximo passo será anotar a nossa classe com @ControllerAdvice
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/75e1563f-2f79-4d0a-a7a0-acea98520c35)
 
 Basta fazer isso para que a nossa classe capture globalmente os erros pelo catch e manipule o body do erro
+
+<div id='response-entity-error'/>
+
+# Criando erros com ResponseEntityExecptionHandler
+
+O spring por default tem vários tipos de erros internos más nnós não precisamos tratar cada tipo separado, para criar um handler de erros basta fazer dessa forma:
+
+Na nossa classe anotada com @ControllerAdvice basta estender ResponseEntityExecptionHandler
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/49d7b481-e29a-4bd2-8947-a71f16038d5f)
+
+Com isso feito a nossa classe já intercepta os erros internos do spring e retornar os statuscode corretos porém sem erro no body
+
+Para adicionar um erro no body do método basta fazer assim:
+
+Fazer um override do método handlerExceptionInternal
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/8561db76-58fe-41de-a33b-c1c9deaf8f69)
+
+Aqui eu estou usando a nossa classe de erro padrão para criar um body de resposta. Para melhorar esse codigo você pode fazer isso apenas se body for null, pois alguns erros por padrão passam um body, dessa forma:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/cd1b56a6-782d-4566-87fc-eb581e4391b7)
+
+O {String} body é um cast do java
+
+O resultado no postman será esse:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/91c54588-b87f-4e04-ae10-9061c84e2d7a)
+
+Com isso feito nós podemos melhorar os outros métodos na nossa classe global de erros assim:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/3219f243-57e1-448d-84f6-0a70c0f6653b)
+
+Basta substituir os codigos por esse nosso metodo que foi feito o override, e o WebRequest que nós pedimos como parâmetro o Spring irá nos fornecer
+
+<div id='problem-details'/>
+
+# Criando body customizados usando o Problem details for HTTP Apis
+
+Um exemplo de corpo de erro usando esse padrão é esse:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/207ab4a9-2eb9-4e99-bb8a-6ff810ae5138)
+
+* Status: è uma ambiguidade pois com cache o status pode vim errado do cache então se deve mandar o status via body
+* Type: Pode ser uma url com uma documentação sobre o problema ou uma url fake que termine com o tipo de problema
+* Title: Texto curto que descreve o erro para humanos
+* Detail: Descrição mais detalhada do erro específico, também feito para humanos lerem
+* Instance: Propriedade opcional, ela expôe uma url que pode ser acessível ou não pela rede para que o cliente busque mais detalhes sobre o problema
+
+É possível também adicionar mais coisas ao body como:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/cde28ea6-f314-4373-9960-a1917bbe6059)
+
+OBS: NÃO SE DEVE EXPOR A STACKTRACE DO ERRO
+
+Agora vamos padronizar o corpo das nossas respostas com esse padrão
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/3506d8e1-6785-45b5-a87c-ca5251bc707f)
+
+Aqui adicionamos esses novos parâmetros a nossa classe que representa o body do erro
+
+Agora vamos refatorar o nosso override de handlerExceptionInternal
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/50ace20f-2773-4a20-bdf3-a26794742725)
+
+O resultado no postman será esse:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/926f597d-d419-430e-b393-d1415e695e27)
+
+Como não temos detalhes e type e caso você não queria exibir null no body basta fazer isso:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/820e5983-63a1-45f0-a344-709189b3eefa)
+
+Com essa anotação na classe que representa o body de erros você está dizendo para incluir apenas campos não nulos. Esse será o resultado:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/cd86dc09-f88d-42e1-b65a-37896189a5d9)
+
+Vamos implementar um método com type e detail
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/2c082121-b6df-42d4-8a39-cc4f4e1d3950)
+
+O resultado será esse:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/13dd2d4c-1665-4eed-b3ba-fd788bcfa157)
+
+<div id='error-increase'/>
+
+# Melhorando a classe que representa nossos erros
+
+Para evitar estar sempre instanciando uma classe de erros globais vamos melhorar o codigo dessa forma:
+
+Primeiro crie um enum:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/3c286acc-b550-4668-916b-995d3941d392)
+
+Feito isso vamos criar esse método
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/1a4958e4-96b5-4483-ba17-a4c1c1688230)
+
+Lembrando que isso é dentro da nossa classe de erros globais ApiExceptionHandler não dentro da classe que transforma um erro em json
+
+Com isso feito vamos comentar as nossas instancias da classe Problem e substituir por essa nossa função
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/277be1af-3920-4ea1-97bc-7c886bae4512)
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/1f1303ac-0415-4b7b-b496-e80e9ef79810)
+
