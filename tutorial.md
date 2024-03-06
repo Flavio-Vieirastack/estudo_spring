@@ -1013,7 +1013,7 @@ Primeiro vamos criar a classe global para o nosso erro
 
 Agora vamos implementar métodos com as nossas exceptions
 
-![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/6d0b37ce-fe83-468b-ab9f-3a4a2724f71e)
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/d6e6da2f-d4cb-44e1-81a2-c9ca0c8569f6)
 
 O proximo passo será anotar a nossa classe com @ControllerAdvice
 
