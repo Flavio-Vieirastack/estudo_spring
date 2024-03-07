@@ -61,6 +61,11 @@
 - [Padrão de erros do Problem details for HTTP Apis](#problem-details)
 - [Melhorando a classe que representa os erros](#error-increase)
 - [Customizando mensagem de erro quando o json é inválido](#error-json)
+- [Validando campos com o BeanValidation](#bean-validation)
+- [Validando mais campos com o BeanValidation](#bean-validation-more)
+- [Validações em cascata](#bean-validation-cascade)
+- [Restringindo validações e agrupando elas](#bean-validation-validate)
+- [Convertendo grupos de validação em validação em cascata com @ConvertGroups](#bean-validation-cascade-groups)
 
 <div id='modificators'/>
 
@@ -1213,4 +1218,114 @@ E a reescrita do método irá ficar assim:
 O resultado será esse:
 
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/a0640fd6-3a68-4312-8e5a-c721fef09fa0)
+
+<div id='bean-validation'/>
+
+# Validando campos com o bean validation
+
+Primeiro passo é ir nos nossos DTOs e fazer uma das anotações do BeanValidation
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/7509fd17-41d3-43b1-a55f-a556c3fd7b8c)
+
+Feito isso vá na controller e faça isso:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/97d7f6d7-1479-47c7-9a31-020f16ab9fba)
+
+O restultado será esse no postman
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/e8fa17e9-496f-483c-88fd-4892b9496de8)
+
+Más veja que ainda sim nossa mensagem de erro é muito genérica então vamos melhorar isso.
+
+Primeiro passo, na nossa classe que representa o json retornado no erro vamos criar mais uma classe dentro dessa classe, assim:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/6f6ed375-082b-4255-aba2-4264c74fb805)
+
+Agora vamos adicionar uma lista dessa nova classe
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/4e3b13ee-1f98-4858-be20-0602f6064800)
+
+Feito isso na nossa classe de erros globais dentro do nosso override de handlerExceptionInternal vamos iniciar essa lista
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/e99a1a9f-a2af-49cd-a6e9-4f622a3e7212)
+
+Agora vamos buscar os erros das contraints de violação da nossa api e isso é feito com o metodo getBindingResults();
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/d4f713dc-1b75-4f3a-8a33-d308e9583883)
+
+O resultado no postman será esse:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/3607bc42-d75a-4f88-9802-48dd39d063e8)
+
+<div id='bean-validation-more'/>
+
+# Validando mais campos com o bean validation
+
+Um guia completo pode ser encontrado aqui: https://reflectoring.io/bean-validation-with-spring-boot/
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/28274375-d26e-4fc9-bde7-04c8bbe3db10)
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/e8fb934a-bdf7-4000-8402-8fa962503d3a)
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/2e04b003-ae15-4ca7-a669-a1dc7a687852)
+
+Com essa anotação a cima o sistema ainda ceita string vazia caso ela tenha espaços dentro e para resolver isso faça assim:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/f0411826-f017-4842-ad45-82ef32a8ca37)
+
+<div id='bean-validation-cascade'/>
+
+# Validações em cascata
+
+Essa validação serve para validar os objetos aninhados em outros objetos, para fazer isso é muito simples
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/6968365b-66f8-4cd3-bc9a-b601387cf282)
+
+Com isso feito o Spring irá entrar nessa classe e ver as validações que tem dentro dela
+
+<div id='bean-validation-validate'/>
+
+# Restringindo validações e agrupando elas
+
+Com a implementação a cima nós geramos um problema, pois quando passado @NotNull para o id ele obriga a passar o id porém nem sempre esse id deve ser passado. As anotações de validação podem receber uma lista de objetos que são os grupos de validação
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/4e269062-2401-43c4-8701-b2bf26b6e743)
+
+Então vamos criar essa classe ou interface
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/8b12688f-5aff-4da8-b39d-d968c227fbd4)
+
+Dentro dessa classe vamos criar outra interface
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/3f6acb05-5691-4285-b580-dc9d1c0ac18f)
+
+Com isso feito vamos adicionar essa interface nas nossas validações menos no @Valid
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/31f970ae-1075-4ee2-9e3b-e3c9730f2f1e)
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/67bb5739-d3bc-4a4b-89c7-e4b2d5cd3a43)
+
+Com isso feito basta ir na controller e substituir o @Valid por @Validated passando o nosso grupo como parâmetro
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/f33db85d-7e11-411f-84cf-4e8d34e311f8)
+
+E pronto todas as nossas validações estarão separadas por grupo que pode ser o default ou o que nós criamos
+
+<div id='bean-validation-cascade-groups'/>
+
+# Convertendo grupos de constraints em validações em cascata usando @ConvertGroups
+
+Vamos diminuir a burocracia que criamos no bloco anterior facilitando o uso dos nossos grupos
+
+Primeiro passo vamos converter um grupo default para o nosso grupo, isso deve ser feito no objeto aninhado
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/dbc1e4c5-49e4-4984-8ac1-aa7b15afc083)
+
+Com isso você não precisa fazer o passos a baixo
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/f33db85d-7e11-411f-84cf-4e8d34e311f8)
+
+Pode voltar de @Validated para @Valid, porém o grupo ainda precisa ficar no id do objeto aninhado
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/b1e3f405-6617-4386-af66-f477898676ac)
 
