@@ -66,6 +66,7 @@
 - [Validações em cascata](#bean-validation-cascade)
 - [Restringindo validações e agrupando elas](#bean-validation-validate)
 - [Convertendo grupos de validação em validação em cascata com @ConvertGroups](#bean-validation-cascade-groups)
+- [Mudando mensagens de erro do bean validation](#bean-validation-message)
 
 <div id='modificators'/>
 
@@ -1328,4 +1329,40 @@ Com isso você não precisa fazer o passos a baixo
 Pode voltar de @Validated para @Valid, porém o grupo ainda precisa ficar no id do objeto aninhado
 
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/b1e3f405-6617-4386-af66-f477898676ac)
+
+<div id='bean-validation-message'/>
+
+# Mudando as mensagens de erro do bean validation
+
+Primeiro passo em src/main/resources vamos criar um arquivo exatamente com esse nome
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/0001716b-0108-4b86-a3e9-b7215b086aca)
+
+Obs: O nome disso é resource bundle
+
+Dentro desse arquivo vamos escrever dessa forma
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/1922fc67-1e61-4796-afb8-1247ea2b4837)
+
+Esse parâmetro deve seguir o seguinte padrão: NomeDaAnotação.nomeDaClasse.nomeDoAtributo=Mensagem a ser enviada
+
+Com isso feito na nossa classe de erros globais ApiExceptionHandler dentro do override de handleMethodArgumentNotValid dentro onde convertemos um fieldError para a nossa classe Problem.Fields vamos criar um bloco de código
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/7e71249f-b737-4d7d-909c-06821cf3cb5b)
+
+Com isso feito vamos injetar uma interface chamada MessageSource
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/ccd5294b-5986-437e-86b5-a6a818ee7f25)
+
+Agora vamos buscar a nossa mensagem que criamos no messages.properties
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/dd676da8-3133-43f2-821d-77cd610da9fb)
+
+OBS: Cuidado com os acentos
+
+Você ainda pode fazer dessa forma:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/3b73f32f-de0a-4dd5-b5a7-a9631a01d674)
+
+Aqui você está pegando o nome da própria variável, e logo a baixo como a variável estpa escrito em minúsculo você pode reatribuir alguma nomenclatura para ela
 
