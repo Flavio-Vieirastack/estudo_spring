@@ -1401,7 +1401,7 @@ Agora vamos adicionar as propriedades obrigatórias
 
 No messages você pode adicionar alguma mensagem do nosso messages.properties
 
-![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/74094e86-edfc-46eb-9ab0-04bdb14f6501)
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/895c0d09-91ad-479d-8b2e-ba17c45f8a5e)
 
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/32aca7bd-e28e-4d17-af31-71b8fdf19205)
 
