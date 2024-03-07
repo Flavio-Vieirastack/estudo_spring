@@ -67,6 +67,7 @@
 - [Restringindo validações e agrupando elas](#bean-validation-validate)
 - [Convertendo grupos de validação em validação em cascata com @ConvertGroups](#bean-validation-cascade-groups)
 - [Mudando mensagens de erro do bean validation](#bean-validation-message)
+- [Criando validações personalizadas](#bean-personal)
 
 <div id='modificators'/>
 
@@ -1366,3 +1367,42 @@ Você ainda pode fazer dessa forma:
 
 Aqui você está pegando o nome da própria variável, e logo a baixo como a variável estpa escrito em minúsculo você pode reatribuir alguma nomenclatura para ela
 
+Um exemplo completo:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/fa6bdbae-9d28-45e7-9a47-65f05ed653d7)
+
+Más existe uma maneira mais simples de fazer isso e é com um Resource bundle do próprio bean
+
+Primeiro passo: Criar uma pasta core e dentro dela criar essa classe
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/9ad5405f-0c16-4f7b-ad8f-0a565dbb1030)
+
+Feito isso vamos criar um bean dentro dessa classe
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/7da6bd93-69df-4528-992b-b6148da36e58)
+
+Com isso feito batsa ir no nosso message.properties e adicionar as mensagens dessa forma:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/fc675978-37d4-408f-920c-35557f502cc0)
+
+<div id='bean-personal'/>
+
+# Criando validações personalizadas
+
+Primeiro passo: Criar a classe de anotação
+
+Como nós vamos fazer isso via composição então vamos anotar com anotações do próprio Spring
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/47aded93-d0ab-4b90-89f6-60e534ae79c8)
+
+Agora vamos adicionar as propriedades obrigatórias
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/45fd7b0a-dc96-4926-bb1e-8b8fad4c63b1)
+
+No messages você pode adicionar alguma mensagem do nosso messages.properties
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/74094e86-edfc-46eb-9ab0-04bdb14f6501)
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/32aca7bd-e28e-4d17-af31-71b8fdf19205)
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/8a6ea52e-a5ce-46e5-9083-51f30651ada7)
