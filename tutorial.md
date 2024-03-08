@@ -1,4 +1,7 @@
-# Parei na aula 4 11:30
+
+# Bean utils
+
+https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/beans/BeanUtils.html
 
 <div id='init'/>
   
@@ -68,6 +71,10 @@
 - [Convertendo grupos de validação em validação em cascata com @ConvertGroups](#bean-validation-cascade-groups)
 - [Mudando mensagens de erro do bean validation](#bean-validation-message)
 - [Criando validações personalizadas](#bean-personal)
+- [Criando validações personalizadas com a interface ConstraintValidator](#bean-personal-constraint)
+- [Criando validações para classes](#class-validation)
+- [Criando validações programaticamente](#class-validation-program)
+- [Criando testes de integração](#test)
 
 <div id='modificators'/>
 
@@ -1405,4 +1412,146 @@ No messages você pode adicionar alguma mensagem do nosso messages.properties
 
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/32aca7bd-e28e-4d17-af31-71b8fdf19205)
 
-![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/8a6ea52e-a5ce-46e5-9083-51f30651ada7)
+<div id='bean-personal-constraint'/>
+
+# Criando validações personalizadas com a interface ConstraintValidator
+
+Vamos criar uma validação só para fins didaticos para verificar se a taxaFrete é um múltiplo de 5
+
+Primeiro passo, criar uma annotation
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/11913418-f627-4835-a46a-e2cf3d60aec5)
+
+Agora vamos adicionar as anotações e as propriedades obrigatórias
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/cf560fa6-df39-4b40-a73b-d5d3635847e0)
+
+Feito isso vamos criar uma variável para guardar o númerico em que a anotação foi usada
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/3143ed0c-5190-44b6-ad46-4979b2e173e6)
+
+Para criar uma anotação totalmente nova nós vamos precisar de uma nova classe
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/17705e0c-58df-4f2e-a35b-6faf1aa8f14c)
+
+Essa classe deve implementar o ConstraintValidator e passar para ela qual a anotação, no caso seria a nossa anotação Multiplo que criamos logo a cima
+
+O proximo passo é adicionar qual o tipo que essa anotação vai validar se é String, bool e etc, nesse caso é um Number pois todos os outros numéricos herdam dele
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/26b7d61d-4ddf-4080-a047-781ed79700fd)
+
+Agora vamos fazer a implementação do método isValid
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/6ab36338-efb8-4b6f-b454-78f32ff1d290)
+
+Existe um outro método não obrigatório chamado initialize, esse método nós vamos implementar também
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/9f003b14-ceaf-41f6-93fc-37006115515c)
+
+O metodo initialize ele inicializa alguma coisa necessária para a validação funcionar, e nós vamos usar ele agora, buscando da nossa classe de anotação o númerico que foi anotado com elas, assim:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/f58449f0-4e81-41e9-87ec-b02363f3088f)
+
+Agora vamos implementar a validação
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/ff9a1c99-447f-41b0-a972-65df1212955e)
+
+Com isso feito vamos na nossa anotação e vincular a classe que acabamos de escrever a ela
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/e89c9985-6aa3-41e8-9826-7c986f55e0a7)
+
+Com isso feito nosso validador está pronto
+
+<div id='class-validation'/>
+
+# Criando validações para classes
+
+Imagine o seguinte cenário, na nossa aplicação todo restaurante que tiver frete grátis (Taxa frete == 0 ) Precisa ter depois do nome Frete grátis (Ou seja quem tiver cadastrando o restaurante precisa passar Frete grátis depois do nome). Para resolver isso vamos criar uma validação de classe
+
+Primeiro vamos criar a anotação na classe só para explicar o que essa anotação deverá receber
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/1770e792-62df-47ce-a4f8-b6a23d8f9f73)
+
+O valorField se refere a taxa de frete cadastrada, e a descrição se refere ao nome do restaurante que deve conter Frete grátis, a obrigatória serve para comparar se a descrição contem a descrição obrigatória. Agora vamos criar essa anotação
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/0da8d5fc-80a5-4e39-a67d-68bb47c12e0e)
+
+Adicionamos as anotações obrigatórias
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/8881a485-cfad-4bc3-bb18-83a639f6c108)
+
+Más lembre-se que nós estamos validando uma classe então a anotação deve ficar assim:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/e94a686a-287b-4204-afa1-d926c893084d)
+
+O ElementType.Type diz que essa anotação pode ser usada em classe, interface ou enum. Agora vamos adicionar as propriedades obrigatórias
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/5b76739a-7dd0-4d0b-a1ce-5f77f558013e)
+
+Agora vamos adicionar os 3 parâmetros necessários para essa validação
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/5c27e0fa-5c9f-4a39-b1d4-e41b199e2a5f)
+
+Feito isso vamos criar a classe de validação
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/e5f09489-79ef-4561-a6b4-e09550bc2a5e)
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/91b9b672-4a66-42ea-a9bf-5db0770247dd)
+
+Igual o mostrado anteriormente. Vamos criar as 3 propriedades e incializar elas
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/9c0a2116-fb23-4d99-bef8-cc3dfcbd822c)
+
+Agora vamos implementar o isValid
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/7f83c909-58f4-49b9-be66-84d94cd28992)
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/133148fd-3173-46df-8409-7937dec76693)
+
+Aqui vai algumas explicações, o objetivo é entrar na classe que está sendo anotada e buscar um atributo com o nome taxaFrete nela, como nós não tipamos e essa anotação é feita para ser usada em qualquer classe nós precisamos buscar o getter de taxa frete na classe que está sendo anotada e isso é feito com o BeanUtils
+
+Vamos fazer o mesmo para buscar a descrição e validar ela
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/cb24f206-6a8a-401a-ab38-9bc983d0a751)
+
+Agora basta ir na nossa anotação e chamar o nosso validator
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/e414b2b7-7594-49cd-9c30-65e3f34c575f)
+
+Com isso feito a nossa validação ja funciona, porém nós temos que atualizar a nossa classe de erros globais pois os erros não aparecem no fields do json de erro, isso acontece pois esse erro que acabamos de criar não é um erro de field. Primeiro nós precisamos refatorar a nossa classe de erros globais disso:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/1f7eff80-fa49-4419-957a-5824d5819dd2)
+
+Para isso:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/1aa6239a-89b5-43c5-a69c-c20e24ecf881)
+
+<div id='class-validation-program'/>
+
+# Criando validações programaticamente
+
+Com a solução a cima nós criamos um problema pois quando é feito uma atualização com valor negativo nós recebemos um erro 500
+
+Aula 9.19 do bloco 9
+
+<div id='test'/>
+
+# Criando testes de integração
+
+Um corpo de teste básico será esse:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/9ab67f74-836e-4d63-b2dc-1530a4e3b395)
+
+Vamos dividir os nossos testes em happy path e unhappy path
+
+Nosso caminho feliz o teste do nosso service será esse:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/a7ef0ca2-1fd8-4d38-9c85-bc7631bc77d4)
+
+Como nos testes o container do spring sobe então e possível injetar qualquer bean. Agora vamos para o teste de erro
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/f16d17d0-5aec-4d39-bb11-cb8a9b308a1b)
+
+Como nesse caso o teste é para erro nós devemos deixar dentro da anotação @Test o tipo de erro esperado
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/9f4a8cf8-e0f1-4329-8556-69450f3ce3ab)
