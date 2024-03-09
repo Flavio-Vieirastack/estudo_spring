@@ -75,6 +75,13 @@ https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframe
 - [Criando validações para classes](#class-validation)
 - [Criando validações programaticamente](#class-validation-program)
 - [Criando testes de integração](#test)
+- [Rodando testes de integração em determinados momentos](#test-hour)
+- [Criando testes de API](#test-api)
+- [Criando testes para validar o corpo da resposta HTTP](#test-api-body)
+- [Criando setup de testes](#test-api-setup)
+- [Subindo o flyway antes de cada teste](#test-api-reset)
+- [Criando um banco de testes](#test-api-mock)
+- [Testando endpoint e parâmetros de url](#test-api-endpoint)
 
 <div id='modificators'/>
 
@@ -117,6 +124,7 @@ Em Java, existem quatro tipos de modificadores que podem ser aplicados a classes
 * ./mvnw dependency:tree (Mostra lista de dependencias)
 * ./mvnw dependency:resolve (Mostra lista de dependencias resolvidas)
 * ./mvnw help:effective-pom (Gera o pom efeitivo do projeto)
+* ./mvnw clean package (Faz um build do projeto gerando um jar)
 
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/ae70dd7b-ecf4-4ac5-b104-05f03bdf1295)
 
@@ -1552,6 +1560,160 @@ Como nos testes o container do spring sobe então e possível injetar qualquer b
 
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/f16d17d0-5aec-4d39-bb11-cb8a9b308a1b)
 
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/d655e092-f129-4f47-93f9-f539153417a6)
+
 Como nesse caso o teste é para erro nós devemos deixar dentro da anotação @Test o tipo de erro esperado
 
-![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/9f4a8cf8-e0f1-4329-8556-69450f3ce3ab)
+Com esse comando você roda todos os testes via linha de comando
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/655977d4-e8c8-45f3-a41b-edcddbb2cfba)
+
+<div id='test-hour'/>
+
+# Rodando testes de integração apenas em certos momentos
+
+O teste de integração demora um certo tempo para ser executado e dependendo do projeto esse tempo pode ser horas, portanto não e do nosso interesse rodar sempre esses testes, por tanto vamos ver como desabilitar os testes em certos momentos.
+
+Primeiro passo, adicionar o plugin maven fail safe
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/9d6cddad-3711-4452-80f6-50a87cccd81a)
+
+Feito isso basta adicionar IT de integration tests no final do nome de cada arquivo de teste
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/decae2d7-c8e8-47e8-8c42-4776819fc231)
+
+Agora quando rodar o comando 
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/e7e35993-1d40-44c6-8bc0-560fdc03493a)
+
+Os testes de integração não serão mais executados e para executar eles basta rodar o comando:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/6851b8ee-bad2-4b4b-872e-7451675a321d)
+
+<div id='test-api'/>
+
+# Criando testes de API
+
+Nesse tipo de teste existe uma chamada a api então você testa todas as chamadas de api e seus retornos esperados
+
+Primeiro passo, adicionar essa dependência
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/0b8b871f-5d11-41c1-9e4d-f52bae665148)
+
+Uma função de testes com o asured deve ser feita da seguinte forma
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/cb331e0c-52d3-467c-b5da-2c944fb66c7b)
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/1d1db222-29b0-4fc6-b294-aac3a7fb5eec)
+
+Aqui se le dado que o base path seja /cozinhas e a porta seja 8080 e o content type seja json quando executar o método get eu desejo receber statuscode 200
+
+O outro teste diz dado que o base path seja /cozinhas e a porta seja 8080 e o content type seja json e o corpo seja o corpo especificado quando executar o método post eu desejo receber statuscode 201
+
+Se você rodar o teste dessa forma ele irá falhar pois precisa que a api esteja funcionando, para fazer isso em ambiente de teste basta fazer assim:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/db55e93f-2ce4-4df3-9c64-99cee78fdcee)
+
+Com isso feito o teste deve passar
+
+Caso queria ter um log informando os motivos de falhas de testes basta fazer assim
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/b4b418b8-a76f-4c67-975e-801f52c305aa)
+
+<div id='test-api-body'/>
+
+# Criando testes para corpo de resposta HTTP
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/4f71d724-ff6d-4f7c-91bc-8817b498875b)
+
+Aqui eu estou fazendo duas validações, uma se o meu json tem 4 objetos e outra se o campo nome possui Tailandesa e Indiana
+
+<div id='test-api-setup'/>
+
+# Criando setup de testes
+
+Para fazer isso é bem simples basta criar uma função e anotar ela com @Before
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/52693fdc-02b7-4474-bb3e-3899457f6cd8)
+
+aqui eu passei várias coisas que estavam duplicadas nos testes como a porta o log e o path
+
+<div id='test-api-reset'/>
+
+# Subindo o flyway antes de cada teste
+
+OBS: CUIDADO COM A ORDEM DOS TESTES PRINCIPALMENTE QUADO FOR POST, POIS SE VOCÊ ESTIVER TESTANDO O TAMANHO DE UMA LISTA ESSE TESTE IRÁ FALHAR POIS O TAMANHO DO JSON FOI MUDADO PELO METODO POST E UM TESTE JAMAIS DEVERÁ DEPENDER DE OUTRO PARA PASSAR E PARA RESOLVER ESSE PROBLEMA FAREMOS ASSIM:
+
+Nós vamos rodar o flyway antes da execução de cada teste
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/4523dafb-44b3-45c8-996a-ee53849bb6f5)
+
+De preferência você deve ter um arquivo afterMigrate.sql dentro da pasta de testes para fazer as suas migrações de teste
+
+<div id='test-api-mock'/>
+
+# Criando um banco de testes
+
+Para simular melhor nosso ambiente de produção vamos criar um banco de dados de testes dentro do mysql
+
+Primeiro passo criar uma pasta resource dentro de src/test/resources
+
+e la dentro vamos criar um aplication.properties somente para testes
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/1438c42a-abcc-4f94-a90d-8c7d5f818e79)
+
+As configurações por hora serão essas
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/cd2afd3d-8db4-4cb2-b1c9-08d8789bd149)
+
+Agora vamos configurar nossos testes para usar esse arquivo de configuração
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/8bb1f5cf-bf49-486f-8bc5-1404758406e7)
+
+Feito isso nós precisamos popular a nossa base de dados de teste
+
+Primeiro passo copiar o codigo desse link
+
+https://gist.github.com/thiagofa/cff61c709277f48a241c145116b92ec1
+
+Segundo passo criar uma pasta dentro de tests chamada utils
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/ea2bce89-89d4-4e4e-ba45-d8ee944a639c)
+
+E colar o codigo no arquivo
+
+Agora vamos injetar ela na nossa classe de testes
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/e03b0c6c-08f9-4338-b17c-056b39d64dc7)
+
+Agora no setup basta chamar o metodo clearTables
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/530fca41-de84-4d26-af22-877673239ed1)
+
+Agora vamos criar um método para inserir uma massa de dados no banco
+
+Primeiro passo, injetar o nosso repository
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/17369c89-35bf-4320-9e77-973555d3b11e)
+
+E implementar o método
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/104de1e2-eb65-4ae4-a1f5-2c59772a70ea)
+
+Feito isso basta chamar esse método no setup logo após a limpeza do banco
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/4c225875-9ab6-41b2-9c2c-86842fc06768)
+
+<div id='test-api-endpoint'/>
+
+# Testando endpoint e parâmetros de url
+
+Vamos testar um endpoint que recebe um id /cozinhas/{id}
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/a22aa64d-58cf-42ce-b0a8-56ace1938497)
+
+Agora vamos fazer um teste de erro
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/3f4d6dca-fb7a-42ec-8488-99ea54ab4f20)
+
+
