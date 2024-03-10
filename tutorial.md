@@ -82,6 +82,7 @@ https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframe
 - [Subindo o flyway antes de cada teste](#test-api-reset)
 - [Criando um banco de testes](#test-api-mock)
 - [Testando endpoint e parâmetros de url](#test-api-endpoint)
+- [Boas práticas em APIs](#good-pratices)
 
 <div id='modificators'/>
 
@@ -1715,5 +1716,39 @@ Vamos testar um endpoint que recebe um id /cozinhas/{id}
 Agora vamos fazer um teste de erro
 
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/3f4d6dca-fb7a-42ec-8488-99ea54ab4f20)
+
+<div id='good-pratices'/>
+
+# Boas práticas em api
+
+* É uma boa pratica anotar com @Transactional qualquer função publica do service que faça alterações no banco de dados
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/3f33a2b5-87f6-4144-b8c8-568fed96a7d1)
+
+* Ignorar campos que não devem ser enviados para a api
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/a13b3a73-59a9-4e7c-98cc-2b9c2d2556df)
+
+* Adicionar anotações á um mixin, quando estamos escrevendo models nãoé bom ter imports do jackson nos nossos models, portanto vamos criar um mixin com essas anotações
+
+Vamos criar uma classe abstrata e colocar nela os atrubutos do nosso model e deixar apenas as anitações do jackson
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/7d9da6e1-7bde-4e0f-93b3-3d6945fe2bcf)
+
+Agora volte no model e remova todas as anotações do jackson
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/0ef0ccb6-2b92-4bdd-bd2d-bd2fe54dc054)
+
+Feito isso vamos criar mais uma classe que estende SimpleModule
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/a3444dad-f8d5-475f-a3c5-bf4e2ddcbfd4)
+
+Agora vamos ligar o mixin ao nosso model
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/c06c8fa6-243f-4469-a442-053ab8f32fe0)
+
+Feito isso o mixin já funciona
+
+* Trabalhando com data e hora de forma correta
 
 
