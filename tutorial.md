@@ -1749,6 +1749,7 @@ Agora vamos ligar o mixin ao nosso model
 
 Feito isso o mixin já funciona
 
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/e4d1af5d-dc07-4571-aaba-e82fe4c59d7d)
 
 
 
