@@ -1749,6 +1749,6 @@ Agora vamos ligar o mixin ao nosso model
 
 Feito isso o mixin já funciona
 
-* Trabalhando com data e hora de forma correta
+
 
 
