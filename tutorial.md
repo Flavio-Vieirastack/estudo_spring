@@ -83,6 +83,7 @@ https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframe
 - [Criando um banco de testes](#test-api-mock)
 - [Testando endpoint e parâmetros de url](#test-api-endpoint)
 - [Boas práticas em APIs](#good-pratices)
+- [Model Mapper](#model-mapper)
 
 <div id='modificators'/>
 
@@ -1749,7 +1750,24 @@ Agora vamos ligar o mixin ao nosso model
 
 Feito isso o mixin já funciona
 
-![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/e4d1af5d-dc07-4571-aaba-e82fe4c59d7d)
+<div id='model-mapper'/>
 
+# Usando ModelMapper
 
+O model mapper é uma biblioteca que ajuda a converter uma classe em outra classe
 
+https://modelmapper.org/getting-started/
+
+Com a dependencia adicionada injete ela na classe que você deseja usar
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/a92b8967-7131-49c2-a0f7-3439a538679c)
+
+Porém o ModelMapper não é um Bean do spring então vamos transforma-lo em um Bean
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/05d634b1-7a3f-4136-b7a9-1049cea1bdec)
+
+Feito isso vamos usar o ModelMapper
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/357f3fb2-d496-4935-822f-721f2e5c16e7)
+
+Isso é feito por correspondência então deixe sempre as variáveis das classes com o mesmo nome
