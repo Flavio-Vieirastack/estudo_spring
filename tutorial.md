@@ -165,6 +165,7 @@ Esse comando a cima serve para especificar uma porta padrão quando fizer o buil
 # Lembretes
 * As pastas dos arquivos da api devem estar dentro da ultima pasta, a que contem o arquivo de start da aplicação
 * A forma certa de usar o equals e hashcode é apenas para o id nas entidades, com o lombook fica assim
+* O Put é para quando você quer atualizar todos os campos já o Patch e para atualizações parciais
 
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/08647f17-fa13-42cf-acde-9ee6af84ff44)
 
