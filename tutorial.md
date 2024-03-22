@@ -8,6 +8,7 @@ https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframe
 # Tutorial spring
 # Indice
   
+- [Verificar se todos os atributos de um objeto são nulos](#all-null)
 - [Modificadores Java](#modificators)
 - [Comandos](#comandos)
 - [Definições de nomenclaturas](#definicoes)
@@ -84,6 +85,31 @@ https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframe
 - [Testando endpoint e parâmetros de url](#test-api-endpoint)
 - [Boas práticas em APIs](#good-pratices)
 - [Model Mapper](#model-mapper)
+
+<div id='all-null'/>
+
+# Verificar se todos os atributos em um objeto são nulos
+
+```
+public class NullChecker {
+
+    public static boolean allNull(Object target) {
+        return Arrays.stream(target.getClass()
+          .getDeclaredFields())
+          .peek(f -> f.setAccessible(true))
+          .map(f -> getFieldValue(f, target))
+          .allMatch(Objects::isNull);
+    }
+
+    private static Object getFieldValue(Field field, Object target) {
+        try {
+            return field.get(target);
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
+    }
+}
+```
 
 <div id='modificators'/>
 
