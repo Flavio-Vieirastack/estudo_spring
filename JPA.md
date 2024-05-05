@@ -155,3 +155,8 @@ Aqui eu tenho uma tabela com duas colunas, uma com o id do produto e outra com a
 
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/bd5c68a0-8ed8-4c2a-8644-c77db2a2dc2c)
 
+O mesmo se aplica a objetos Embbedable quando eles são listas
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/ca66bcd1-dfb3-4817-926f-751eefbd573d)
+
+
