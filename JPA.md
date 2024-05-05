@@ -1,3 +1,5 @@
+# Parei na aula 6.10
+
 <div id='init'/>
   
 - [Dicas](#tips)
