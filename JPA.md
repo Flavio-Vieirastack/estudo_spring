@@ -1,14 +1,15 @@
-# Parei na aula 6.10
-
 <div id='init'/>
   
 - [Dicas](#tips)
 - [Optional](#optional)
 - [@Column](#column)
+- [@EntityListner](#listner)
 - [Chave composta](#key)
 - [Transient](#transient)
 - [@PostLoad](#load)
 - [@ElementCollection](#colection)
+- [SecondaryTable](#second)
+- [Henraça entre entidades](#entity-custom)
 
 # Dicas
 
@@ -113,6 +114,84 @@ public class User {
 
 Neste exemplo, o método init() será chamado automaticamente sempre que um objeto User for carregado do banco de dados.
 
+# @EntityListner
+
+O EntityListener é uma interface no contexto da JPA (Java Persistence API) que permite que você defina métodos de callback que são acionados em resposta a eventos relacionados às entidades (objetos persistentes) em um contexto de persistência. Ele é usado principalmente para interceptar e responder a mudanças no ciclo de vida das entidades JPA, como quando uma entidade é persistida, atualizada ou removida do banco de dados.
+
+Os métodos definidos em um EntityListener podem ser usados para executar ações personalizadas antes ou depois de certos eventos ocorrerem em uma entidade, como validações adicionais, atualizações de log, ou qualquer outra lógica de negócio específica.
+
+Por exemplo, você pode ter um EntityListener que registra a data e hora em que uma entidade foi criada ou modificada, atualizando automaticamente esses campos em resposta a eventos de persistência.
+
+Em resumo, o EntityListener é uma ferramenta útil para adicionar lógica personalizada relacionada ao ciclo de vida das entidades em uma aplicação JPA.
+
+```java
+import javax.persistence.*;
+import java.util.Date;
+
+// Entidade que será monitorada
+@Entity
+@EntityListeners(AuditingEntityListener.class)
+public class Produto {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String nome;
+    private double preco;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dataCriacao;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date ultimaAtualizacao;
+
+    // getters e setters
+}
+
+// EntityListener para auditar as entidades
+public class AuditingEntityListener {
+
+    @PrePersist
+    public void prePersist(Object entity) {
+        if (entity instanceof Produto) {
+            Produto produto = (Produto) entity;
+            produto.setDataCriacao(new Date());
+            produto.setUltimaAtualizacao(new Date());
+        }
+    }
+
+    @PreUpdate
+    public void preUpdate(Object entity) {
+        if (entity instanceof Produto) {
+            Produto produto = (Produto) entity;
+            produto.setUltimaAtualizacao(new Date());
+        }
+    }
+}
+
+// Classe principal
+public class Main {
+    public static void main(String[] args) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("exemploPU");
+        EntityManager em = emf.createEntityManager();
+
+        em.getTransaction().begin();
+
+        Produto produto = new Produto();
+        produto.setNome("Laptop");
+        produto.setPreco(1500.00);
+
+        em.persist(produto);
+
+        em.getTransaction().commit();
+
+        em.close();
+        emf.close();
+    }
+}
+```
+
 <div id='colection'/>
 
 # @ElementCollection
@@ -161,4 +240,33 @@ O mesmo se aplica a objetos Embbedable quando eles são listas
 
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/ca66bcd1-dfb3-4817-926f-751eefbd573d)
 
+<div id='second'/>
+
+# Secondary table
+
+è uma forma de criar uma tabela a partir dos dados de duas outras tabelas
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/d5390cb6-f2b9-43bb-9fbc-e4d5132865e3)
+
+Com isso feito a tabela e gerada somente com a coluna id, e para gerar o restante das colunas basta:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/c75918ab-95e0-48ce-ae01-f7867a05c375)
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/94d393a8-d142-464d-8f40-0f041e4a85a3)
+
+O resultado será esse:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/244b068a-be73-4273-b514-726ef7a92fba)
+
+<div id='entity-custom'/>
+
+# Herança entre entidades
+
+Supondo que nós temos entidades com atributos que podem ser duplicados entre elas, ou tenham algo em comum com seus atributos, nós podemos criar uma base exemplo:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/853052d7-5142-4a53-aaa1-05ac3dd442f1)
+
+Aqui eu criei uma classe que abriga o id, e na hora de usar basta
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/84389362-709b-4e72-8f68-479b7fa9f8e8)
 
