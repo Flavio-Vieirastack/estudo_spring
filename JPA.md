@@ -7,6 +7,7 @@
 - [Chave composta](#key)
 - [Transient](#transient)
 - [@PostLoad](#load)
+- [Callbacks de estado](#persist)
 - [@ElementCollection](#colection)
 - [SecondaryTable](#second)
 - [Henraça entre entidades](#entity-custom)
@@ -114,6 +115,8 @@ public class User {
 
 Neste exemplo, o método init() será chamado automaticamente sempre que um objeto User for carregado do banco de dados.
 
+<div id='listner'/>
+
 # @EntityListner
 
 O EntityListener é uma interface no contexto da JPA (Java Persistence API) que permite que você defina métodos de callback que são acionados em resposta a eventos relacionados às entidades (objetos persistentes) em um contexto de persistência. Ele é usado principalmente para interceptar e responder a mudanças no ciclo de vida das entidades JPA, como quando uma entidade é persistida, atualizada ou removida do banco de dados.
@@ -191,6 +194,27 @@ public class Main {
     }
 }
 ```
+
+<div id='persist'/>
+
+# @PrePersist
+
+Executado antes de persistir dados no banco
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/e16c84d1-f01d-47bc-b962-587b169f7ccd)
+
+# @PreUpdate
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/57758d68-e463-4f25-a255-3e328ef66059)
+
+# @PostPersist
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/d51b34e2-d0e8-48f2-83e7-259cff22c522)
+
+Nós ainda podemos encadear os métodos
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/63ba30ee-d462-4017-8896-aec573d115ec)
+
 
 <div id='colection'/>
 
