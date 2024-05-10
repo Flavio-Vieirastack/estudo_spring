@@ -296,3 +296,48 @@ Aqui eu criei uma classe que abriga o id, e na hora de usar basta
 
 A classe também pode ser abstrata, porém somente para classes qu servem para apenas extensão
 
+## Mesmo exemplo com simgle table
+
+ESSE EXEMPLO E O PRÓXIMO SÃO OS MAIS INDICADOS
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/42a3265f-4d0d-4714-9cee-6e452a60d5c7)
+
+o "dtype" é o nome da tabela que vai ser criada
+
+Na estratégia a cima e criado uma única tabela contendo todos os dados que estão sendo estendidos de outras classes:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/8c1ae022-de82-425f-8f3d-93f11cb15d4b)
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/ba994afa-2d7b-4ba2-af53-cb43726051af)
+
+As anotações @Table estão sendo ignoradas portanto pode remove-las
+
+O resultado será esse:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/ff6c4b57-4cf5-4f67-a384-f09ae2d7905a)
+
+## Mesmo exemplo com Tabke per class
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/0aa29a8d-1a2e-483c-a2a9-b77a58e68f57)
+
+Feito isso adicione as anotações @Table
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/1feecb78-899d-416c-a56d-add0a64a46f8)
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/0682bff7-dd18-4d12-a35c-508884ef98af)
+
+E não precisa dessa anotação e nem do @DiscriminatorValue e nem da anotação @Table na classe abstrata
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/7fa67960-f59e-416f-be24-92c16233c0bb)
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/40298bfd-3434-4c8a-aeea-c9cf0390be08)
+
+## Mesma coisa más com @JoinedTable
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/56e5bf59-7a76-4990-9293-9f19939f63d8)
+
+As demais tabelas devem ficar assim:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/b7009213-9bdb-4a05-b115-df63c9898f21)
+
+
