@@ -294,3 +294,5 @@ Aqui eu criei uma classe que abriga o id, e na hora de usar basta
 
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/84389362-709b-4e72-8f68-479b7fa9f8e8)
 
+A classe também pode ser abstrata, porém somente para classes qu servem para apenas extensão
+
