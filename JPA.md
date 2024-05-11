@@ -11,6 +11,8 @@
 - [@ElementCollection](#colection)
 - [SecondaryTable](#second)
 - [Henraça entre entidades](#entity-custom)
+- [@Table](#table)
+- [@JoinColumn](#join)
 
 # Dicas
 
@@ -32,6 +34,16 @@ Quando você tem um relacionamento em uma entidade e você sabe que sempre que v
 Como não permitir inserções ou atualizações nos campos
 
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/37285064-851d-40d4-89ec-f9aaf804675c)
+
+## Column definition
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/2ad42db6-049a-443a-a316-7f781f0173de)
+
+## Propriedades do bug decimal
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/8b85a054-e506-4577-ad61-4f47a6dbd26c)
+
+Aqui eu estou dizendo que eu posso ter um número de até 19 digitos com 2 casas decimais
 
 <div id='key'/>
 
@@ -339,5 +351,30 @@ E não precisa dessa anotação e nem do @DiscriminatorValue e nem da anotação
 As demais tabelas devem ficar assim:
 
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/b7009213-9bdb-4a05-b115-df63c9898f21)
+
+<div id='table'/>
+
+# @Table
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/50625ce2-1507-46da-b185-fb90414dcd97)
+
+* Schema: Serve para selecionar o banco de dados usado no momento, ou seja você poder ter no mesmo projeto entidades que acessam bancos de dados diferentes (Bancos criados dentro do mysql por exemplo)
+* Unique constraints: São colunas no banco de dados que não podem se repetir (A forma a baixo é a melhor forma pois permite personalizar o nome da unique constraint ao invez de usar @Column(unique=true)
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/820cdfbd-ff8b-4a39-a251-0387b56b9888)
+
+* Indexes: Serve para facilitar o banco a encontrar dados de forma mais fácil via pesquisa
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/de5a771c-0470-4154-8c31-492a6b1e69f1)
+
+lembrando que o "nome" deve ser o nome da coluna no banco de dados e não o da variável
+
+<div id='join'/>
+
+# @JoinColumn
+
+Como customizar o nome da FK
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/cc14ac2e-10bd-4065-a0bd-ab62366c56f7)
 
 
