@@ -13,6 +13,7 @@
 - [Henraça entre entidades](#entity-custom)
 - [@Table](#table)
 - [@JoinColumn](#join)
+- [JPQL](#jpql)
 
 # Dicas
 
@@ -376,5 +377,25 @@ lembrando que o "nome" deve ser o nome da coluna no banco de dados e não o da v
 Como customizar o nome da FK
 
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/cc14ac2e-10bd-4065-a0bd-ab62366c56f7)
+
+<div id='jpql'/>
+
+# JPQL
+
+Sintaxe básica:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/fda563d9-571c-4f82-bf06-9c479e04e907)
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/1bad1866-d3fe-472b-a04a-e46aab41a0c1)
+
+## Selecionando um atributo da entidade como retorno
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/47a425b3-7c70-4170-b31f-78c00aa5200e)
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/35fd1d57-017c-433d-9254-09d91716b200)
+
+## Projeções
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/2af72bec-be1f-47c7-800c-1178b02318d0)
 
 
