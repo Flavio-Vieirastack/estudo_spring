@@ -398,4 +398,18 @@ Sintaxe básica:
 
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/2af72bec-be1f-47c7-800c-1178b02318d0)
 
+## InnerJoin
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/7c9fe6e2-80ae-4c8e-a2dc-37f105adb5c8)
+
+Você pode deixar apenas o JOIN que funcionará
+
+E você pode fazer projeções
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/963502f9-f3b6-4159-85f4-6565e996b5dc)
+
+E fazer com filtro
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/5d20f4b4-4ac4-4eb2-9f3f-0f6663325e24)
+
 
