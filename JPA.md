@@ -432,6 +432,60 @@ Com Joins
 
 ### Like
 
-![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/5f050ed5-9367-4126-8292-11397a31e853)
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/3e0447b8-2abe-4b2a-b817-634038823957)
 
 Nesse caso a cima eu quero todos os clientes que tenham o nome igual ao que eu passei como parâmetro
+
+Para buscar apenas sobrenome do cliente
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/f7942801-d53e-40b3-8da3-261d65cbe21e)
+
+Para fazer uma busca mais abrangente por exemplo, todos os clientes que tem "a" no nome
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/f7fc6a65-18e4-43e6-90cf-76ab63eaf900)
+
+### Null e IsEmpty
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/86d858cd-f2bf-404f-a1aa-be8b0dcbe0d8)
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/4bb2fb70-4873-4855-b408-0157b6f6d48e)
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/e2cf1871-51b6-4014-8c09-0a1c4aeb46fd)
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/edff54e7-dc5c-42e2-8ca0-dd595e270ca6)
+
+### Conicionais maior e menor
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/43f4b515-4786-4be4-be47-641244b8ff14)
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/2503c8b2-3e81-4d1e-85e1-bcb8300f663d)
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/d5e790ff-ee7e-40c8-b9ed-ffd53d04aeac)
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/0dc7309a-f79b-46e6-a1d5-1cb8496c1c26)
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/8a5d2612-54c8-4804-adde-e41596972f84)
+
+### Between
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/45b92f85-7bc8-4cb3-ab1d-7026495bff7f)
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/f158cd94-a249-4865-9b4f-cae82d837632)
+
+### Diferente
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/cc9cfc8e-5b65-418e-816d-85e96f465364)
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/9ce73a2c-6350-4fbe-b41c-2f380529b754)
+
+### Operadores lógicos
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/de84a58a-a7bf-45a3-a1a2-9bd652048e70)
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/30b61b44-2dcb-426f-8961-a9cfbd2cd191)
+
+### Ordenação
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/a81a85e9-2f69-4b5b-9878-eb23e73c09aa)
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/2bac34d8-abb0-4fcf-82bf-e2d02cd44239)
