@@ -489,3 +489,31 @@ Para fazer uma busca mais abrangente por exemplo, todos os clientes que tem "a" 
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/a81a85e9-2f69-4b5b-9878-eb23e73c09aa)
 
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/2bac34d8-abb0-4fcf-82bf-e2d02cd44239)
+
+### Funções para Strings
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/54758fbb-7d30-4598-bc97-90b7a4c5f503)
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/9ca4b2d0-7cc9-4d6d-806b-76149672b809)
+
+Resultado:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/50945d80-2c0d-42f4-bda9-5c5fe6f29935)
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/43e72e02-6a2a-4c52-aed3-6b0a52646537)
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/b5a8141a-ec7d-498d-8677-fe6261ccdd2e)
+
+No Exemplo a cima usamos o locate que busca o índice da string adicionada
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/cb85e5f0-d3c2-46cf-946c-7a287fd0234c)
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/ab2f7238-0760-41b8-af72-69e5612c6dae)
+
+* Upper: Deixa em caixa alta
+* Trim: Remove espaços do início e do fim da String
+
+Uso em conjunto:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/7409ba61-ce17-4816-b697-456da8578abe)
+
