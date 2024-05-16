@@ -412,4 +412,26 @@ E fazer com filtro
 
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/5d20f4b4-4ac4-4eb2-9f3f-0f6663325e24)
 
+## Fetch
 
+Faz uma busca a mais nas nossas entidades
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/31df29df-18d8-4193-aade-ac492b1c17ca)
+
+Com Joins
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/de7eaa64-a650-4f23-a18d-890e6f5f78b0)
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/2061a366-ede2-47f0-8b1d-193b40a1d5a4)
+
+## Passando parâmetros
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/b524891a-551c-4b89-a57e-a7589140d97e)
+
+## Expessões condicionais
+
+### Like
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/5f050ed5-9367-4126-8292-11397a31e853)
+
+Nesse caso a cima eu quero todos os clientes que tenham o nome igual ao que eu passei como parâmetro
