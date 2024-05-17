@@ -521,8 +521,43 @@ Uso em conjunto:
 
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/9661dcb2-02f3-48dd-bb35-2aa79a0675f7)
 
-### Funções para coleções
+### Funções de agregação
 
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/a4c8aba8-552e-4e99-a4a9-61c9844466ac)
+
+* avg: Fazer média
+* count: Conta a quantidade de registros no banco, tanto faz o parâmetro que você passar, ele sempre vai retornar o total de registros
+* min: Pega o menor valor
+* max: Pega o valor máximo
+* sum: somar tudo
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/9ce39c90-9c2d-4c2f-9201-1759758161c5)
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/11824c32-a847-4921-aa11-04224d24ce2a)
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/e62307a3-e17b-4d98-b269-df0625201bab)
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/f3074cec-d28b-400e-867f-ae17f383bb20)
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/0c19a98a-0528-45d2-b171-376183d0f9b4)
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/eafeac81-9802-4ebd-b3c6-190bf7a7c785)
+
+### Agrupando registros
+
+Agrupando produtos por categoria e fazendo o count delas
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/61c37219-5ab4-4586-aa98-7f47254b01d3)
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/0a4dd287-124d-4b7d-bcec-00bd975e8cf3)
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/8e76b290-848e-4a77-8c56-ac3fcdf8e7b8)
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/aaf3dcef-bcc6-47f5-b303-3b7859695fee)
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/2cd00a52-a734-47a4-af37-c5b35cb7bfe1)
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/4941e74a-f71b-438c-99f8-70643f521b99)
 
 
 
