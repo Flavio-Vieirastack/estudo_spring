@@ -517,3 +517,12 @@ Uso em conjunto:
 
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/7409ba61-ce17-4816-b697-456da8578abe)
 
+### Funções para datas
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/9661dcb2-02f3-48dd-bb35-2aa79a0675f7)
+
+### Funções para coleções
+
+
+
+
