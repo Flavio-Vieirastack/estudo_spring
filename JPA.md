@@ -559,5 +559,110 @@ Agrupando produtos por categoria e fazendo o count delas
 
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/4941e74a-f71b-438c-99f8-70643f521b99)
 
+### Usando WHERE
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/24cad5af-a6b2-4538-8c25-1c75bb05ce8f)
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/2f191080-0770-4482-a217-c2d3b2f746ca)
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/f9c14aa9-dd8b-4fab-b19f-2d51c698fa1d)
+
+### Usando HAVING
+
+Serve para adicionar condições para os agrupamentos
+
+* Você só pode usar no having funções de agregação e objetos que estejam no group by
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/cd39bab9-7761-49d4-8b24-4025ba605ec5)
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/15ab60ba-0586-49a7-8e13-4d8ae2ec7274)
+
+### Usando CASE
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/7b245b6f-0c44-4f2b-9e09-f49690c23430)
+
+Resultado
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/a8775743-0be6-4b64-aab1-c5538d031986)
+
+Usando com TYPE
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/05b504dd-1177-4465-b4a3-86e4729e127b)
+
+Resultado
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/f7b929f8-b467-4d35-8fa8-45e22eaf7d51)
+
+Sempre tem que terminar a expessão com END
+
+### Usando IN
+
+Serve quando você ja tem os registros que você quer e você quer um detalhamento de apenas alguns registros
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/0b08ac88-c555-4d87-bedf-868880d6faaf)
+
+### Usando DISTINCT para evitar duplicações
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/c63d7a28-5336-4edd-a946-528ac087e73e)
+
+### Criando SUB-QUERIES
+
+Use sempre que precisar gerar dados a partir dos dados que você ja tem
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/4dfd335d-7997-4fd8-84e6-65d47b7ac83d)
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/e67b7224-84e2-4938-af30-56cc15976ccd)
+
+Selecionando clientes que gastam a cima da média
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/56f54b1e-32dd-43e8-8c0b-bfb7a6ce990a)
+
+Fazendo o mesmo só que de outra forma
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/fd061f34-2714-4cae-acd8-6d115a810572)
+
+### Criando SUB-QUERIES com IN
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/31c4e5af-6671-478a-8d80-1e9198e43996)
+
+### Criando SUB-QUERIES com EXISTS
+
+Selecionar todos os produtos que foram vendidos aomenos uma vez
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/50358d1a-2494-46f7-9665-c5d7e13543df)
+
+Selecionar produtos que não foram vendidos
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/37020cb2-fa60-499b-8386-71cb705f18a6)
+
+### Criando SUB-QUERIES com ALL
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/c64474d9-05d3-4004-a50d-99a68eb0fb7a)
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/d4b4d6a4-f188-4951-87e9-9f29704f589e)
+
+### Criando SUB-QUERIES com ANY
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/011d2692-b28f-417a-829d-35e3bdfd8caa)
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/97efcb66-8b92-4bc0-9bf9-aad1909f0019)
+
+### Atualização em lote
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/3f54fa73-1da1-42d3-8c5e-c31d42d2403f)
+
+### Remoção em lote
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/71af5629-11bb-4d48-806a-cdc4320f5b86)
+
+### NamedQuery
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/3c0bb10e-d010-4b42-ac80-78b7578ba067)
+
+Em seguida, você deve declarar um método no repositório correspondente que utilize essa named query. O Spring Data JPA detectará a named query pelo nome.
+
+Ou fazendo concatenação
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/edc257fc-8e3a-4f30-ac74-f7ff30ee8db9)
 
 
