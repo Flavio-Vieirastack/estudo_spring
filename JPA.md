@@ -14,6 +14,7 @@
 - [@Table](#table)
 - [@JoinColumn](#join)
 - [JPQL](#jpql)
+- [Conversor de atributos](#converter)
 
 # Dicas
 
@@ -664,5 +665,16 @@ Em seguida, você deve declarar um método no repositório correspondente que ut
 Ou fazendo concatenação
 
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/edc257fc-8e3a-4f30-ac74-f7ff30ee8db9)
+
+<div id='converter'/>
+
+# Conversor de atributos
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/e1e280ea-a3ec-4919-b96d-06c96f005848)
+
+E no atributo:
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/00cea676-e94d-4f67-8aef-e9111e2ff61f)
+
 
 
