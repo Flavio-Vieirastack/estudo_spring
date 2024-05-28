@@ -77,3 +77,9 @@ Após rodar o comando isso será criado:
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/be5d3ab2-ab84-49b8-8589-059ab30a143e)
 
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/c1726fc7-5ec3-4a6d-b97a-00474a54e4d7)
+
+# Azure provider
+
+Doc: https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs
+
+
