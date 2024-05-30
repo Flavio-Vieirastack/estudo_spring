@@ -78,8 +78,40 @@ Após rodar o comando isso será criado:
 
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/c1726fc7-5ec3-4a6d-b97a-00474a54e4d7)
 
-# Azure provider
+# Variáveis
 
-Doc: https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs
+Doc: https://developer.hashicorp.com/terraform/language/values/variables
 
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/165c0e4c-f60f-4c64-8227-a4a943dcb8f3)
 
+Referenciando as variáveis
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/cf74bc24-cfbf-476d-977e-412cdcd2b6b9)
+
+# Referenciando blocos em outros blocos
+
+Doc: https://developer.hashicorp.com/terraform/language/expressions/references
+
+## Referenciando um bloco de recursos
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/e70cc265-5074-4d4e-a6c8-bf46d512687d)
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/e0b1cddc-ba5d-4614-a730-ae048f01a081)
+
+# Local values
+
+Usado para funções que se repetem no código ou variáveis
+
+Doc: https://developer.hashicorp.com/terraform/language/values/locals
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/7a434bd4-626f-4339-bea1-18922bd354dd)
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/794cc441-d849-4f10-bb2e-3d1e44c13ffc)
+
+# Outputs
+
+Server para expor informações
+
+Doc: https://developer.hashicorp.com/terraform/language/values/outputs
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/931b387b-7abb-46a1-81c6-8cfad5dadef0)
