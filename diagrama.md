@@ -55,7 +55,7 @@ Os símbolos de cardinalidade são essenciais para definir claramente as regras 
 
 # Exemplo em código
 
-Um (Representado por uma linha reta com uma barra vertical):
+## Um (Representado por uma linha reta com uma barra vertical):
 
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/27dae2d8-acd6-4ab9-ba71-e58117896c1f)
 
@@ -83,7 +83,7 @@ public class Departamento {
 }
 ```
 
-Muitos (Representado por uma linha reta com uma linha em forma de pé de galinha):
+## Muitos (Representado por uma linha reta com uma linha em forma de pé de galinha):
 
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/5bedc68e-6efe-4ccd-971d-6aeacde16dfd)
 
@@ -118,7 +118,7 @@ public class Pedido {
 }
 ```
 
-Um (e somente um) (Representado por uma linha reta com duas barras verticais):
+## Um (e somente um) (Representado por uma linha reta com duas barras verticais):
 
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/066f55af-f7c3-4a67-a9b2-bc27085751a2)
 
@@ -146,7 +146,7 @@ public class Pais {
 }
 ```
 
-Zero ou um (Representado por uma linha reta com um círculo e uma barra vertical):
+## Zero ou um (Representado por uma linha reta com um círculo e uma barra vertical):
 
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/a52729ed-70ca-483f-bdaf-b0038b2a6de1)
 
@@ -174,7 +174,7 @@ public class Escola {
 }
 ```
 
-Um ou muitos (Representado por uma linha reta com uma barra vertical e uma linha em forma de pé de galinha):
+## Um ou muitos (Representado por uma linha reta com uma barra vertical e uma linha em forma de pé de galinha):
 
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/42e859ca-e0dd-40b1-88fa-b8080a88d8b8)
 
@@ -218,7 +218,7 @@ public class Aluno {
 }
 ```
 
-Zero ou muitos (Representado por uma linha reta com um círculo e uma linha em forma de pé de galinha):
+## Zero ou muitos (Representado por uma linha reta com um círculo e uma linha em forma de pé de galinha):
 
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/bccf3d5e-6118-4870-ba35-f9f53e408b41)
 
