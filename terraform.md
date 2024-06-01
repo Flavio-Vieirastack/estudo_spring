@@ -112,6 +112,20 @@ Doc: https://developer.hashicorp.com/terraform/language/values/locals
 
 Server para expor informações
 
+
 Doc: https://developer.hashicorp.com/terraform/language/values/outputs
 
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/931b387b-7abb-46a1-81c6-8cfad5dadef0)
+
+# Remote States
+
+Configurar o provider
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/75aca739-32a7-47bd-aa8e-bb69b3dd81e8)
+
+Configurar a bucket
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/cb75d24d-a7df-4cb9-8258-ae09543baf3e)
+
+
+
