@@ -127,5 +127,18 @@ Configurar a bucket
 
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/cb75d24d-a7df-4cb9-8258-ae09543baf3e)
 
+Configurando o VPV
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/dc502970-4eed-4943-9126-5d828dbffafa)
+
+Doc: https://developer.hashicorp.com/terraform/language/settings/backends/s3
+
+![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/177312b8-c528-4cd5-9784-5d52bfafd427)
+
+
+# Modulos
+
+Doc: https://developer.hashicorp.com/terraform/language/modules
+
 
 
