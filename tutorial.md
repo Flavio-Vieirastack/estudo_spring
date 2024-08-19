@@ -85,6 +85,7 @@ https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframe
 - [Testando endpoint e parâmetros de url](#test-api-endpoint)
 - [Boas práticas em APIs](#good-pratices)
 - [Model Mapper](#model-mapper)
+- [Model Mapper](#security)
 
 <div id='all-null'/>
 
@@ -1798,3 +1799,40 @@ Feito isso vamos usar o ModelMapper
 ![image](https://github.com/Flavio-Vieirastack/estudo_spring/assets/85948951/357f3fb2-d496-4935-822f-721f2e5c16e7)
 
 Isso é feito por correspondência então deixe sempre as variáveis das classes com o mesmo nome
+
+<div id='security'/>
+
+# HTTP BASIC
+
+Com http basic você pode configurar o usuário e senha assim:
+
+![image](https://github.com/user-attachments/assets/5f152d72-ee21-4894-a9fd-4c7faaf2f89d)
+
+E para usar no postman por exemplo você tem que converter para base64
+
+![image](https://github.com/user-attachments/assets/dbe433af-95b5-45f8-ba47-67d1294a7149)
+
+e usar assim:
+
+![image](https://github.com/user-attachments/assets/b08edce0-3a2d-49ec-bd38-db13417de6bc)
+
+ou
+
+![image](https://github.com/user-attachments/assets/be3584f5-4a5c-4c2b-bc41-2d22b1ff8678)
+
+# Autenticação em memoria
+
+![image](https://github.com/user-attachments/assets/95b72bff-ac97-4eb2-82bb-0edcdd0f5224)
+
+agora nós precisamos dar encode no password:
+
+![image](https://github.com/user-attachments/assets/b367eaa7-f188-4d5d-87ce-e43c07aa0462)
+
+agora vamos criptografar a senha:
+
+![image](https://github.com/user-attachments/assets/1f6ae813-d185-48b8-aab2-fef9c6fe628a)
+
+no postman:
+
+![image](https://github.com/user-attachments/assets/72ac384c-416d-4579-87c0-92534ba1a346)
+
